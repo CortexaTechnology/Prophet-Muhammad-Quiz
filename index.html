@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>گەشتی ناسین: پێغەمبەری خوا ﷺ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-light: rgba(79, 70, 229, 0.1);
+            --glow-color: rgba(79, 70, 229, 0.5);
+            --text-dark: #111827;
+            --text-light: #6b7280;
+            --background-color: #f9fafb;
+            --card-background: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --border-radius: 1rem;
+            --correct-bg: rgba(60, 179, 113, 0.1);
+            --correct-border: #3cb371;
+            --incorrect-bg: rgba(200, 70, 70, 0.1);
+            --incorrect-border: #c84646;
+            --success-color: #16a34a;
+        }
+
+        body.dark-mode {
+            --primary-color: #818cf8;
+            --primary-light: rgba(129, 140, 248, 0.1);
+            --glow-color: rgba(129, 140, 248, 0.3);
+            --text-dark: #f9fafb;
+            --text-light: #9ca3af;
+            --background-color: #030712;
+            --card-background: #111827;
+            --border-color: #374151;
+            --success-color: #22c55e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Naskh Arabic', serif;
+            background-color: var(--background-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Animation */
+        #background-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .book-cover-img { max-width: 160px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 1.5rem; }
+
+        
+        /* Header */
+       .main-header {
+            position: relative; /* لەجیاتی fixed */
+            top: 0;
+            width: 100%;
+            max-width: 850px;
+            margin: 20px auto; /* بۆ ناوەڕاستکردن */
+            padding: 0.8rem 1.5rem;
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(12px);
+        }
+
+       .container {
+            max-width: 900px;
+            margin: 0 auto; /* بێ مارجنی سەرەوە */
+            padding: 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+  
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .header-logo {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s ease;
+        } 
+
+        .logo-link:hover .header-logo {
+            transform: scale(1.05);
+        }
+
+        .logo-link span {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+ 
+        .logo-dark {
+            display: none;
+        }
+
+        body.dark-mode .logo-light {
+            display: none;
+        }
+
+        body.dark-mode .logo-dark {
+            display: block;
+        }
+
+        #theme-toggle {
+            background-color: var(--primary-light);
+            border: none;
+            color: var(--primary-color);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        #theme-toggle:hover {
+            transform: scale(1.1) rotate(20deg);
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+
+        /* Quiz Header */
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-header .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        /* Start Container */
+        #start-container {
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 3rem 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .start-instructions {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin: 2rem 0;
+            color: var(--text-light);
+        }
+
+        #start-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 50px;
+            font-size: 1.3rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--glow-color);
+        }
+
+        #start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px var(--glow-color);
+        }
+
+        /* Quiz Container */
+        #quiz {
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .quiz-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            gap: 20px;
+        }
+
+        #progress {
+            flex-grow: 1;
+            text-align: right;
+        }
+
+        #progress-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        #progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: var(--border-color);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        #progress-bar-full {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0%;
+            border-radius: 5px;
+            transition: width 0.5s ease-out;
+        }
+
+        /* Timer */
+        #timer {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timer-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotate(-90deg);
+        }
+
+        .timer-bg-circle {
+            fill: none;
+            stroke: var(--border-color);
+            stroke-width: 4;
+        }
+
+        .timer-progress-circle {
+            fill: none;
+            stroke: var(--primary-color);
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-dasharray: 176;
+            stroke-dashoffset: 176;
+            transition: stroke-dashoffset 1s linear, stroke 0.5s;
+        }
+
+        #timer-text {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        /* Question */
+        .question-title {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            min-height: 100px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Options */
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .option-btn {
+            background: var(--background-color);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-dark);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1.1rem;
+            padding: 18px;
+            text-align: right;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary-color);
+            background: var(--primary-light);
+            transform: translateX(-5px);
+        }
+
+        .option-btn.selected-wrong {
+            border-color: var(--incorrect-border);
+            background: var(--incorrect-bg);
+            color: var(--incorrect-border);
+            animation: shake 0.5s;
+        }
+
+        .option-btn.correct {
+            border-color: var(--correct-border);
+            background: var(--correct-bg);
+            color: var(--correct-border);
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        #finish-btn {
+            background: transparent;
+            border: 2px solid #b26a76;
+            border-radius: 12px;
+            color: #b26a76;
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 12px 25px;
+            transition: all 0.3s;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        #finish-btn:hover {
+            background: #b26a76;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Results */
+        #result {
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.8s;
+        }
+
+        .result-summary {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .score-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary-color) calc(var(--score-percent) * 3.6deg), var(--border-color) 0);
+            margin: 25px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: growCircle 1s ease-out;
+        }
+
+        @keyframes growCircle {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .score-circle span {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            background: var(--card-background);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #result h2 {
+            font-size: 2.4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        #result p {
+            font-size: 1.2rem;
+            margin: 12px 0;
+            color: var(--text-light);
+        }
+
+        .result-message {
+            font-size: 1.4rem !important;
+            font-weight: 600;
+            margin-top: 25px;
+            color: var(--text-dark) !important;
+        }
+
+        .restart-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 18px 60px;
+            font-size: 1.4rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 25px;
+            box-shadow: 0 5px 15px var(--glow-color);
+        }
+
+        .restart-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px var(--glow-color);
+        }
+
+        /* Review Section */
+        #review-container {
+            text-align: right;
+            margin-top: 3rem;
+        }
+
+        #review-container h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .review-list {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+
+        .review-item {
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            background: var(--background-color);
+            transition: all 0.3s ease;
+        }
+
+        .review-item:hover {
+            box-shadow: 0 5px 15px var(--glow-color);
+        }
+
+        .review-item p {
+            margin: 10px 0;
+            font-size: 1.05rem;
+        }
+
+        .review-item .user-answer {
+            padding: 10px;
+            border-radius: 8px;
+            margin: 8px 0;
+        }
+
+        .review-item .user-answer.correct {
+            background: var(--correct-bg);
+            border-right: 4px solid var(--correct-border);
+            color: var(--correct-border);
+        }
+
+        .review-item .user-answer.incorrect {
+            background: var(--incorrect-bg);
+            border-right: 4px solid var(--incorrect-border);
+            color: var(--incorrect-border);
+        }
+
+        .review-item .correct-answer-display {
+            background: var(--primary-light);
+            border-right: 4px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .main-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem 0;
+        }
+
+        .footer-credits p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .footer-credits h3 {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            margin: 0.5rem 0 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-header {
+                width: 95%;
+                padding: 0.6rem 1rem;
+                top: 10px;
+            }
+            
+            .container {
+                margin-top: 90px;
+                padding: 15px;
+            } 
+
+            .quiz-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .question-title {
+                font-size: 1.4rem;
+                min-height: 80px;
+            }
+
+            .option-btn {
+                font-size: 1rem;
+                padding: 15px;
+            }
+
+            #start-btn,
+            .restart-btn {
+                font-size: 1.2rem;
+                padding: 15px 40px;
+            }
+
+            .score-circle {
+                width: 150px;
+                height: 150px;
+            }
+
+            .score-circle span {
+                width: 120px;
+                height: 120px;
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="dark-mode">
+    <div id="background-stars"></div>
+
+    <header class="main-header">
+        <div class="header-content">
+            <a href="https://linkbio.co/HoshyarHussein" target="_blank" class="logo-link">
+                <!-- NOTE: Add Cortexa logos to assets/images folder -->
+                <img src="assets/images/Cortexa-LogoBlue.png" alt="Cortexa Logo" class="header-logo logo-light">
+                <img src="assets/images/Cortexa-LogoWhite.png" alt="Cortexa Logo" class="header-logo logo-dark">
+                <span>Cortexa</span>
+            </a>
+            <button id="theme-toggle" title="گۆڕینی دۆخ">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="start-container">
+             <img src="assets/images/bookCover.png" alt="Book Cover" class="book-cover-img">
+            <div class="quiz-header">
+                <h1>با باشتر بیناسین</h1>
+                <p class="subtitle">گەشتێک بەناو ژیان و ڕەوشتی پێغەمبەری خوا ﷺ</p>
+            </div>
+            <p class="start-instructions">
+                ئامادەیت بۆ گەشتێک بەناو ژیانی خۆشەویستماندا؟<br>
+                ٢٦١ پرسیاری جۆری هەڵبژاردە<br>
+                لە کۆتایی بینی ئەنجام و سەرجەم پرسیار و وەڵامەکانت و وەڵامی دروست<br>
+                بۆ هەر پرسیارێک ٣٠ چرکەت لەبەردەستە.
+            </p>
+            <button id="start-btn">دەستپێکردن</button>
+        </div>
+
+        <div id="quiz" style="display: none;">
+            <div class="quiz-status">
+                <div id="progress">
+                    <p id="progress-text"></p>
+                    <div id="progress-bar">
+                        <div id="progress-bar-full"></div>
+                    </div>
+                </div>
+                <div id="timer">
+                    <svg class="timer-svg" width="70" height="70" viewBox="0 0 70 70">
+                        <circle class="timer-bg-circle" r="28" cx="35" cy="35"></circle>
+                        <circle class="timer-progress-circle" r="28" cx="35" cy="35"></circle>
+                    </svg>
+                    <span id="timer-text">30</span>
+                </div>
+            </div>
+
+            <h2 id="question" class="question-title"></h2>
+            <div id="options" class="options-container"></div>
+            <button id="finish-btn">تەواوکردنی تاقیکردنەوە</button>
+        </div>
+
+        <div id="result" style="display: none;"></div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-credits">
+            <p>پەرەپێدان و دیزاین لەلایەن</p>
+            <h3>Hoshyar Hussein Mohammed</h3>
+            <div class="social-links">
+                 <a href="https://linkbio.co/HoshyarHussein" target="_blank" title="Linktree"><i class="fa-solid fa-link"></i></a>
+                 <a href="https://www.facebook.com/share/16xbqsC3Lg/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                 <a href="https://www.instagram.com/cortexatech" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                 <a href="https://www.tiktok.com/@cortexatech" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                 <a href="https://www.snapchat.com/add/cortexatech" target="_blank" title="Snapchat"><i class="fa-brands fa-snapchat"></i></a>
+                 <a href="https://t.me/CortexaTech" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                 <a href="https://www.youtube.com/@Cortexa-Technology" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>2025 Cortexa Technology ©</p>
+        </div>
+    </footer>
+
+    <audio id="correct-sound" preload="auto"
+        src="data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjQ1LjEwMAAAAAAAAAAAAAAA//tAwAAAAAAAAAAAAAAAAAAAAAA"></audio>
+    <audio id="incorrect-sound" preload="auto"
+        src="data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjQ1LjEwMAAAAAAAAAAAAAAA//tAwAAAAAAAAAAAAAAAAAAAAAA"></audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script>
+        // Quiz Data - truncated for brevity, use your full data
+        const quizData = [
+            /////////////-----------------------  پرسیارە گرنگەکانی زیادە ------------------------/////////////////////
+            // پرسیارە گرنگەکانی زیادە - لە تەواوی کتێبەکەوە -------
+            // وانەی یەکەم و دووەم - وردەکارییەکانی تر
+            { question: "دەمی پێغەمبەر ﷺ چۆن بوو لە ڕووی قەبارەوە؟", options: ["زۆر بچووک", "فراوان و گەورە", "ئاسایی", "تەسک"], answer: "فراوان و گەورە" },
+
+            { question: "کەمێک دووری لە نێوان کام ددانەکانی پێغەمبەردا ﷺ هەبوو؟", options: ["ددانە پێشەوەکان", "قازنگەکان", "ددانە بڕەڕ و کەڵبەکان", "ددانە دواییەکان"], answer: "ددانە بڕەڕ و کەڵبەکان" },
+
+            { question: "لە نێوان دوو ئەبرۆکانی پێغەمبەردا ﷺ چی هەبوو کە کاتی توڕەبوون پڕ خوێن دەبوو؟", options: ["خاڵێک", "دەمارێک", "برینێک", "هیچی نەبوو"], answer: "دەمارێک" },
+
+            // وانەی سێیەم - مۆر
+            { question: "مۆری پێغەمبەرایەتی لە کام ڕووداودا دروست بوو؟", options: ["لە غاری حەڕا", "لە ڕووداوی سینگ لەتکردن", "لە شەوی میعراج", "لە کاتی لەدایکبووندا"], answer: "لە ڕووداوی سینگ لەتکردن" },
+
+            { question: "کێ سینگی پێغەمبەری ﷺ لەتکرد و بە ئاوی زەمزەم شۆردی؟", options: ["میکائیل", "جوبڕائیل", "ئیسرافیل", "عەزرائیل"], answer: "جوبڕائیل" },
+
+            // وانەی چوارەم - پرچ
+            { question: "پێغەمبەر ﷺ کاتێک پرچی بە دوو بەش دابەش دەکرد، هەر بەشێکی چۆن دادەهێنا؟", options: ["یەک کەزی دەکرد", "دوو کەزی دەکرد و دەیبەست", "بە ئازادی دەیهێشتەوە", "سێ کەزی دەکرد"], answer: "دوو کەزی دەکرد و دەیبەست" },
+
+            { question: "لە کام سوورەتاندا پێغەمبەر ﷺ فەرموویەتی 'سەریان سپی کردووم'؟", options: ["یاسین و الرحمن", "هود و الواقعة و المرسلات و النبأ و التکویر", "البقرة و آل عمران", "الملک و القلم"], answer: "هود و الواقعة و المرسلات و النبأ و التکویر" },
+
+            // وانەی پێنجەم - پۆشاک
+            { question: "پێغەمبەر ﷺ کاتێک پۆشاکی نوێی دەپۆشی، چ دوعایەکی دەکرد؟", options: ["تەنها ستایشی خوای دەکرد", "داوای خێری پۆشاکەکەی لێدەکرد و پەنای دەبرد بە شەڕی", "تەنها سوپاسی خوای دەکرد", "هیچ دوعایەکی نەدەکرد"], answer: "داوای خێری پۆشاکەکەی لێدەکرد و پەنای دەبرد بە شەڕی" },
+
+            { question: "لە کاتی حەجی کۆتایی، پۆشاکی پێغەمبەر ﷺ چەند درهەم بوو (زۆر هەرزان بوو)؟", options: ["دوو درهەم", "چوار درهەم", "دە درهەم", "بیست درهەم"], answer: "چوار درهەم" },
+
+            // وانەی شەشەم - ئەنگوستیلە
+            { question: "بۆچی پێغەمبەر ﷺ مۆر (ئەنگوستیلە) دروستی کرد؟", options: ["بۆ جوانکاری", "بۆ ناردنی نامە بۆ پادشایان، چونکە نامە بێ مۆر وەرناگرن", "چونکە هەمووان هەیانبوو", "بۆ نیشاندانی دەسەڵات"], answer: "بۆ ناردنی نامە بۆ پادشایان، چونکە نامە بێ مۆر وەرناگرن" },
+
+            { question: "پێغەمبەر ﷺ کاتێک دەچوویە سەرئاو (دەستشوردن) چی دەکرد بە ئەنگوستیلەکەی؟", options: ["هیچی نەدەکرد", "لە دەست دەردەهێنا", "بە باشی دەیشۆرد", "دەیداە دەستی چەپی"], answer: "لە دەست دەردەهێنا" },
+
+            // وانەی حەوتەم - ڕۆیشتن و دانیشتن
+            { question: "دوای نوێژی بەیانی، پێغەمبەر ﷺ چەند مشق لە شوێنی خۆی دادەنیشت؟", options: ["دوو مشق", "سێ مشق", "چوار مشق", "پێنج مشق"], answer: "چوار مشق" },
+
+            { question: "کاتێک پێغەمبەر ﷺ لە نێو هاوەڵان دادەنیشت، هەر کەسێک هەستی بە چی دەکرد؟", options: ["کە نزیکترین کەسە لێی", "کە لە هەموویان بەڕێزترە لەالی پێغەمبەر", "کە گرنگترین کەسە", "کە تایبەتترین کەسە"], answer: "کە لە هەموویان بەڕێزترە لەالی پێغەمبەر" },
+
+            // وانەی هەشتەم و نۆیەم - خواردن
+            { question: "پێغەمبەر ﷺ پێشنیازی کرد گەدە بە چەند بەش دابەش بکرێت؟", options: ["دوو بەش", "سێ بەش: خواردن، ئاو، هەوا", "چوار بەش", "تەنها بۆ خواردن"], answer: "سێ بەش: خواردن، ئاو، هەوا" },
+
+            { question: "پێغەمبەر ﷺ لەسەر چی نانی دەخوارد؟", options: ["مێز", "دەستەرخوان بەرز", "لە زەوی لەسەر سفرە", "کورسی"], answer: "لە زەوی لەسەر سفرە" },
+
+            { question: "ئەنەس دەڵێت پێغەمبەر ﷺ تا وەفاتیشی چی نەبینی؟", options: ["گۆشت", "نانی سپی تەنک (کولێرە)", "میوە", "شیرینی"], answer: "نانی سپی تەنک (کولێرە)" },
+
+            { question: "پەرداخی پێغەمبەر ﷺ لە چی دروستکرابوو؟", options: ["زێڕ", "زیو", "دار و ئاسن", "سفاڵ"], answer: "دار و ئاسن" },
+
+            // وانەی دەیەم - بۆن
+            { question: "پێغەمبەر ﷺ فەرموویەتی سێ شت ڕەت ناکرێنەوە، یەکێکیان چییە؟", options: ["خواردن", "ماڵ", "بۆن", "پۆشاک"], answer: "بۆن" },
+
+            // وانەی یازدەیەم - قسەکردن  
+            { question: "کاتێک پێغەمبەر ﷺ شتێکی گرنگی دەفەرموو، چەند جار دووبارەی دەکردەوە؟", options: ["یەک جار", "دوو جار", "سێ جار", "چوار جار"], answer: "سێ جار" },
+
+            // وانەی سێزدەیەم - گریان
+            { question: "لە شەونوێژدا پێغەمبەر ﷺ ئەوەندە دەگریا تا چی تەڕ دەبوو؟", options: ["تەنها چاوەکانی", "ڕووخساری", "ڕیشی و خۆڵی ژێر پێی", "پۆشاکەکەی"], answer: "ڕیشی و خۆڵی ژێر پێی" },
+
+            // وانەی چواردەیەم - قورئان
+            { question: "لە کام حاڵەتدا پێغەمبەر ﷺ قورئانی نەدەخوێند؟", options: ["کاتی سواربوون", "کاتی دانیشتن", "لە حاڵەتی جونوب (لەشگرانی)", "کاتی پاڵکەوتن"], answer: "لە حاڵەتی جونوب (لەشگرانی)" },
+
+            // وانەی پازدەیەم - ڕۆژوو
+            { question: "پێغەمبەر ﷺ فەرموویەتی بۆ ڕۆژووەوان لە کاتی بەربانگدا دوعایەک هەیە کە...؟", options: ["بەهێز دەبێت", "قبوڵە و ڕەت ناکرێتەوە", "دوو قات پاداشتی هەیە", "جێبەجێ دەبێت دواتر"], answer: "قبوڵە و ڕەت ناکرێتەوە" },
+
+            { question: "کام ڕۆژانە پێغەمبەر ﷺ پێی پەسەند نەبوو بەتەنیا بەڕۆژوو بین؟", options: ["دووشەممە", "هەینی یان شەممە", "چوارشەممە", "پێنجشەممە"], answer: "هەینی یان شەممە" },
+
+            // وانەی شازدەیەم - نوێژ
+            { question: "پێغەمبەر ﷺ فەرموویەتی لە کۆتا ساتەکانی ژیانی: 'نوێژ نوێژ! ... لە نوێژەکانتان'؟", options: ["بەرز بن", "ئاگادار بن", "الله الله (خوا خوا، وریا بن)", "دڵنیا بن"], answer: "الله الله (خوا خوا، وریا بن)" },
+
+            { question: "لە کاتی جەنگی بەدر کە هەموو هاوەڵان خەوتبوون، کێ بە تەنیا بێدار بوو و نوێژی دەکرد؟", options: ["عومەر", "عەلی", "پێغەمبەر ﷺ", "ئەبوبەکر"], answer: "پێغەمبەر ﷺ" },
+
+            // وانەی حەڤدەیەم - شەونوێژ
+            { question: "پێغەمبەر ﷺ شەونوێژی بە چەند ڕکات کۆتایی پێدەهێنا (ویتر)؟", options: ["یەک ڕکات", "سێ ڕکات", "پێنج ڕکات", "حەوت ڕکات"], answer: "سێ ڕکات" },
+
+            // وانەی هەژدەیەم - دوعا
+            { question: "کۆتا دوعای پێغەمبەر ﷺ پێش وەفات چی بوو؟", options: ["الفردوس الأعلى (بەهەشتی بەرزترین)", "الرفیق الأعلى (یارانی بەرزترین/خوا)", "اللهم اغفر لي (خوایە لێم خۆش بە)", "اللهم اغفر لي وارحمني وألحقني بالرفیق الأعلى"], answer: "اللهم اغفر لي وارحمني وألحقني بالرفیق الأعلى" },
+
+            // وانەی نۆزدەیەم - خاکەڕایی
+            { question: "پێغەمبەر ﷺ کاتێک وەفاتی کرد چەند پارە یان سامانی هێشتەوە؟", options: ["سامانێکی زۆر", "ماڵێکی گەورە", "هیچ ماڵ و سامانێک جێنەهێشت، تەنها چەکەکەی و هێسترەکەی و پارچە زەوی بە خێر", "زێڕ و زیو"], answer: "هیچ ماڵ و سامانێک جێنەهێشت، تەنها چەکەکەی و هێسترەکەی و پارچە زەوی بە خێر" },
+
+            { question: "لە کاتی وەفات، پێغەمبەر ﷺ قەرزدار بوو بۆ چی؟", options: ["ماڵێک", "هەندێک جۆی لە جوولەکەیەک", "پارە", "گۆشت"], answer: "هەندێک جۆی لە جوولەکەیەک" },
+
+            // وانەی بیستەم - فێرکردن
+            { question: "پێغەمبەر ﷺ بۆ چاککردنی هەڵە، زۆربەی جار چ شێوازێکی بەکاردەهێنا؟", options: ["بە ڕاستەوخۆ ناوی کەسەکەی دەهێنا", "بە گشتی قسەی دەکرد بێ ناوهێنان", "تەنها سزای دەدا", "چاوپۆشی دەکرد"], answer: "بە گشتی قسەی دەکرد بێ ناوهێنان" },
+
+            // وانەی بیست و یەکەم - ڕەوشت
+            { question: "پێغەمبەر ﷺ سەخیترین کەس بوو، ئایا هەرگیز کەسێکی بێ ئومێد کرد؟", options: ["بەڵێ، ئەگەر نەیتوانیبا", "نەخێر، هەرگیز", "تەنها لە حاڵەتی تایبەتدا", "بە گوێرەی دۆخەکە"], answer: "نەخێر، هەرگیز" },
+
+            // وانەی بیست و دووەم - جەنگ
+            { question: "پێغەمبەر ﷺ پێش دەستپێکردنی جەنگ چی دەکرد؟", options: ["ڕاستەوخۆ هێرشی دەکرد", "بانگهێشتی دەکردن بۆ ئیسلام", "تەنها ئامادەیی دەکرد", "هاوپەیمان کۆدەکردەوە"], answer: "بانگهێشتی دەکردن بۆ ئیسلام" },
+
+            { question: "لە جەنگدا کوشتنی کامیان قەدەغە کرا؟", options: ["تەنها ئافرەت", "ئافرەت و منداڵ و پیر و پیاوانی ئایینی", "تەنها منداڵ", "هەموو ئەوانەی چەکدار نین"], answer: "ئافرەت و منداڵ و پیر و پیاوانی ئایینی" },
+
+            // وانەی بیست و سێیەم - ئافرەتان
+            { question: "پێغەمبەر ﷺ فەرموویەتی: 'باشترین نیعمەتی دونیا ...'؟", options: ["ماڵ و سامان", "ئافرەتێکی چاک و باش", "تەندروستی", "منداڵ"], answer: "ئافرەتێکی چاک و باش" },
+
+            { question: "پێغەمبەر ﷺ چۆن مژدەی بەهەشتی دا بەوانەی کچ بەخێو دەکەن؟", options: ["تەنها ئاماژەی پێکرد", "فەرموویەتی کچان مایەی گێڕانەوەن لە دۆزەخ و بردن بۆ بەهەشت", "تەنها پێکەنی", "هیچی نەفەرموو"], answer: "فەرموویەتی کچان مایەی گێڕانەوەن لە دۆزەخ و بردن بۆ بەهەشت" },
+
+            // وانەی بیست و چوارەم و پێنجەم - شایەتی هیرەقل
+            { question: "هیرەقل پاشای ڕۆم، دوای گوێگرتن لە ئەبو سوفیان، چ دەرئەنجامێکی وەرگرت؟", options: ["کە محەممەد ﷺ درۆزنە", "کە بەڕاستی پێغەمبەری خوایە و دەسەڵاتەکەی دەگاتە ژێر پێیەکانی", "کە پیاوێکی ئاساییە", "کە سیاسەتمەدارە"], answer: "کە بەڕاستی پێغەمبەری خوایە و دەسەڵاتەکەی دەگاتە ژێر پێیەکانی" },
+
+            // وانەی بیست و شەشەم - وەفات
+            { question: "لە کۆتا نیگادا بۆ هاوەڵان، پێغەمبەر ﷺ لە کوێوە سەرنجی دان؟", options: ["لە دەرگای مزگەوت", "لە پەنجەرەی ژوورەکەی", "لە سەر مینبەر", "لە ناو حەوشەکە"], answer: "لە پەنجەرەی ژوورەکەی" },
+
+            { question: "ئەبوبەکر بە کام ئایەت خەڵکەکەی هێور کردەوە دوای وەفات؟", options: ["تەنها ئایەتولکورسی", "ئایەتی 'وما محمد إلا رسول...' و 'إنك میت...'", "تەنها سووڕەتی یاسین", "فاتیحە"], answer: "ئایەتی 'وما محمد إلا رسول...' و 'إنك میت...'" },
+
+            { question: "ئەبوبەکر فەرموویەتی: 'هەرکەس ... دەپەرستێ، ئەوە خوا زیندووە، ئەوەش کە محەممەد دەپەرستێ، ئەوە محەممەد وەفاتی کرد'؟", options: ["پەیامبەران", "خوا", "ئایینەکان", "بەرگەکان"], answer: "خوا" },
+            // دەربارەی ئەخلاق و ڕەفتار
+            { question: "ئەنەس دەڵێت: 'دە ساڵ خزمەتم کرد، هەرگیز پێی نەفەرمووم بۆ شتێک کە کردبێتم ... یان بۆ شتێک کە نەمکردبێ ...'؟", options: ["'زۆر باشە' / 'کەم باشە'", "'بۆ وات کردوە؟' / 'بۆ نەتکردوە؟'", "'سوپاس' / 'ببورە'", "'درووستە' / 'هەڵەیە'"], answer: "'بۆ وات کردوە؟' / 'بۆ نەتکردوە؟'" },
+
+            { question: "پێغەمبەر ﷺ فەرموویەتی: 'بەڕاستی نەهاتوومە مەگەر بۆ ... '؟", options: ["دابەشکردنی سامان", "تەواوکردنی ئەخلاقە باشەکان", "بنیاتنانی مزگەوت", "فێرکردنی خوێندنەوە"], answer: "تەواوکردنی ئەخلاقە باشەکان" },
+
+            // دەربارەی عیبادەت و نزیکبوونەوە لە خوا
+            { question: "پێغەمبەر ﷺ لە شەونوێژدا ئەوەندە دەوەستا بە پێوە تا ... ؟", options: ["دەستەکانی ئاوسا", "پێیەکانی ئاوسان", "ڕیشی تەڕ دەبوو", "برژانگەکانی ئێش دەبوون"], answer: "پێیەکانی ئاوسان" },
+
+            { question: "کاتێک پێغەمبەر ﷺ پرسیاریان لێکرد بۆچی ئەوەندە خۆت ئەزیەت دەدەیت لە کاتێکدا خوا لێت خۆشبووە، چ وەڵامێکی دایەوە؟", options: ["'بۆ منوونە بوون'", "'ئەی بەندەیەکی سوپاسگوزاری خوا نەبم؟'", "'بۆ بەرزکردنەوەی پلەکەم'", "'بۆ لێخۆشبوونی زیاتر'"], answer: "'ئەی بەندەیەکی سوپاسگوزاری خوا نەبم؟'" },
+
+            // دەربارەی زانست و فێربوون
+            { question: "پێغەمبەر ﷺ دەربارەی فێربوون و فێرکردن فەرموویەتی: 'باشترینتان ئەوانەن کە ... '؟", options: ["قورئان فێردەبن و فێری دەکەن", "تەنها قورئان دەخوێنن", "تەنها فێری خەڵک دەکەن", "نوێژی زۆر دەکەن"], answer: "قورئان فێردەبن و فێری دەکەن" },
+
+            // دەربارەی کۆمەڵگا و مافەکان
+            { question: "پێغەمبەر ﷺ فەرموویەتی: 'هەر کەسێک لەسەر بەندەیەکی خۆیدا (خزمەتکار) ...'؟", options: ["دەبێت زۆر کاری پێ بکات", "لەوەی خۆی دەخوات بیداتێ و لەوەی خۆی دەپۆشێت بیپۆشێنێت", "دەبێت کرێی زۆری پێ بدات", "دەبێت تەنها نان و ئاوی پێ بدات"], answer: "لەوەی خۆی دەخوات بیداتێ و لەوەی خۆی دەپۆشێت بیپۆشێنێت" },
+
+            // دەربارەی برایەتی و پەیوەندی
+            { question: "پێغەمبەر ﷺ فەرموویەتی: 'هیچ یەکێکتان بڕوادار نابێت تا بۆ برای ... بخوازێت'؟", options: ["ئەوەی بۆ خۆی دەیەوێت", "تەنها خێری", "زیاتر لە خۆی", "هەمان ئەوەی خۆی هەیەتی"], answer: "ئەوەی بۆ خۆی دەیەوێت" },
+
+            // دەربارەی سەبر و پشوودرێژی
+            { question: "کاتێک پیاوێکی دەشتەکی بە ناشیرینی قسەی لەگەڵ پێغەمبەردا کرد و داوای ماڵی لێکرد، پێغەمبەر ﷺ چی کرد؟", options: ["ڕەتی کردەوە", "سەرزەنشتی کرد", "پێکەنی و فەرمانی کرد پێی بدەن", "پشتگوێی خست"], answer: "پێکەنی و فەرمانی کرد پێی بدەن" },
+
+            // دەربارەی دڵسۆزی بۆ ئوممەت
+            { question: "پێغەمبەر ﷺ شەوێک تەنها یەک ئایەتی دووبارە دەکردەوە و بۆی دەگریا، کام ئایەت بوو؟", options: ["ئایەتولکورسی", "'إن تعذبهم فإنهم عبادك...' (ئەگەر سزایان بدەیت بەندەی خۆتن)", "سووڕەتی فاتیحە", "ئایەتی 'قل هو الله أحد'"], answer: "'إن تعذبهم فإنهم عبادك...' (ئەگەر سزایان بدەیت بەندەی خۆتن)" },
+
+            // دەربارەی تەواضوع (خاکەڕایی)
+            { question: "پێغەمبەر ﷺ فەرموویەتی: 'زێدەڕۆیی مەکەن لە مەدحکردنم وەک چۆن نەسارانییەکان لە مەدحی ... زیادەڕۆییان کرد'؟", options: ["موسا", "ئیبراهیم", "عیسای کوڕی مەریەم", "نوح"], answer: "عیسای کوڕی مەریەم" },
+
+            // دەربارەی کاتی وەفات
+            { question: "لە کۆتا نیگایدا بۆ هاوەڵان لە پەنجەرەی ژوورەکەیەوە، پێغەمبەر ﷺ چۆن دیار بوو؟", options: ["خەمبار و گریان", "زەردەخەنە و دڵخۆش", "بێهێز و ماندوو", "توڕە و نیگەران"], answer: "زەردەخەنە و دڵخۆش" },
+
+            { question: "ئەبوبەکر کە ڕووداوی وەفاتی بینی، چی وتی: 'بە ... بۆنت هەر خۆشە'؟", options: ["ژیانیی", "مردوویی و زیندووییەوە", "یادەوەری", "دیداری"], answer: "مردوویی و زیندووییەوە" }
+
+            // پرسیارە گرنگەکانی زیادە
+            ,{ question: "لە حەجی کۆتایی (حجة الوداع)، پێغەمبەر ﷺ لە وتارەکەیدا چ جەختێکی کردەوە دەربارەی مافی ئافرەتان؟", options: ["پێویستە خزمەتیان بکرێت", "دەربارەی ئافرەتان لە خوا بترسن و باش بن لەگەڵیان", "نابێت قسەیان لەگەڵ بکرێت", "تەنها پێویستە نانیان بدرێت"], answer: "دەربارەی ئافرەتان لە خوا بترسن و باش بن لەگەڵیان" },
+
+            { question: "لە وتارەکەی حەجی کۆتایی، پێغەمبەر ﷺ چ شتێکی بەجێهێشت کە ئەگەر مسوڵمانان پێیەوە بن هەرگیز گومڕا نابن؟", options: ["تەنها قورئان", "کتێب و سوننەت (قورئان و سوننەتی پێغەمبەر)", "تەنها فەتوای زانایان", "تەنها ئیجماعی ئوممەت"], answer: "کتێب و سوننەت (قورئان و سوننەتی پێغەمبەر)" },
+
+            { question: "پێغەمبەر ﷺ لە کۆتا وتارەکەیدا فەرموویەتی: 'هەموو مسوڵمانێک لەسەر مسوڵمانێکی تر ... ە'؟", options: ["سەرکردەیە", "مامۆستایە", "برایە", "شاگردە"], answer: "برایە" },
+
+            { question: "لە کۆتا ساتەکانی ژیانیدا، پێغەمبەر ﷺ زۆرترین ئامۆژگاریەکەی چی بوو؟", options: ["زکات بدەن", "حەج بکەن", "ئاگاتان لە نوێژ و بەردەستەکانتان بێت", "ڕۆژوو بگرن"], answer: "ئاگاتان لە نوێژ و بەردەستەکانتان بێت" },
+
+            { question: "پێغەمبەر ﷺ فەرموویەتی: 'خەونی بڕوادار بەشێکە لە ... بەشی پێغەمبەرایەتی'؟", options: ["دە", "بیست", "سی", "چل و شەش"], answer: "چل و شەش" }
+
+            // خێزان و هاوسەرەکان
+            ,{ question: "یەکەم هاوسەری پێغەمبەر ﷺ کێ بوو و چەند ساڵ پێکەوە بوون؟", options: ["عائیشە، ١٥ ساڵ", "خەدیجە، ٢٥ ساڵ", "حەفسە، ١٠ ساڵ", "زەینەب، ٢٠ ساڵ"], answer: "خەدیجە، ٢٥ ساڵ" },
+
+            { question: "پێغەمبەر ﷺ لە کاتی هاوسەرگیری لەگەڵ خەدیجە چەند ساڵ بوو؟", options: ["٢٠ ساڵ", "٢٥ ساڵ", "٣٠ ساڵ", "٣٥ ساڵ"], answer: "٢٥ ساڵ" },
+
+            { question: "کام هاوسەری پێغەمبەر ﷺ خاوەنی تیجارەتێکی گەورە بوو و پێغەمبەری بانگهێشت کرد بۆ هاوسەرگیری؟", options: ["عائیشە", "خەدیجە", "زەینەب", "سەودە"], answer: "خەدیجە" },
+
+            { question: "دایکامنی ئیمانداران عائیشە کچی کێ بوو؟", options: ["عومەری کوڕی خەتاب", "ئەبوبەکری سدیق", "عوسمانی کوڕی عەففان", "عەلی کوڕی ئەبی تاڵیب"], answer: "ئەبوبەکری سدیق" },
+
+            { question: "پێغەمبەر ﷺ فەرموویەتی: 'باشترین ئێوە ئەوانەن کە لەگەڵ ... باشن'؟", options: ["دایک و باوکیان", "برا و خوشکەکانیان", "خێزانەکانیان", "هاوەڵەکانیان"], answer: "خێزانەکانیان" },
+
+            // منداڵەکان
+            { question: "کوڕەکەی پێغەمبەر ﷺ کە لە منداڵیدا وەفاتی کرد، ناوی چی بوو؟", options: ["حەسەن", "حوسەین", "ئیبراهیم", "قاسیم"], answer: "ئیبراهیم" },
+
+            { question: "کچی پێغەمبەر ﷺ کە هاوسەری عەلی کوڕی ئەبی تاڵیب بوو، ناوی چی بوو؟", options: ["زەینەب", "رووقەییە", "ئومی کولسووم", "فاتیمە"], answer: "فاتیمە" },
+
+            { question: "پێغەمبەر ﷺ کاتێک فاتیمەی کچی دەهاتە خزمەتی، چی دەکرد؟", options: ["تەنها سەلامی لێدەکرد", "لەبەری هەڵدەستا و نێوچاوانی ماچ دەکرد", "ڕێزی دەگرت بەڵام دانانەیشت", "بەرەو دەرگای مزگەوت دەڕۆیشت"], answer: "لەبەری هەڵدەستا و نێوچاوانی ماچ دەکرد" },
+
+            { question: "پێغەمبەر ﷺ فەرموویەتی دەربارەی فاتیمە: 'فاتیمە ... منە'؟", options: ["کچی", "بەشێکە لە", "جوانی", "سەری ماڵی"], answer: "بەشێکە لە" },
+
+            { question: "کاتێک منداڵان ئازاری دەدا یان دەنگیان دەهات لە کاتی نوێژدا، پێغەمبەر ﷺ چی دەکرد؟", options: ["سەرزەنشتی دەکردن", "دەری دەکردن", "نوێژەکەی کورت دەکردەوە", "پشتگوێیان دەخست"], answer: "نوێژەکەی کورت دەکردەوە" },
+
+            // هاوەڵان
+            { question: "کام هاوەڵ لەلایەن پێغەمبەرەوە ﷺ بە 'حەواریی پێغەمبەر' ناسراوە؟", options: ["ئەبوبەکر", "عومەر", "زوبەیری کوڕی عەووام", "خالیدی کوڕی ولید"], answer: "زوبەیری کوڕی عەووام" },
+
+            { question: "پێغەمبەر ﷺ دەربارەی کێ فەرموویەتی: 'ئەگەر هاوڕێیەکم هەڵبژێرم، ئەبوبەکرم هەڵدەبژێرد'؟", options: ["عومەری کوڕی خەتاب", "ئەبوبەکری سدیق", "عوسمانی کوڕی عەففان", "عەلی کوڕی ئەبی تاڵیب"], answer: "ئەبوبەکری سدیق" },
+
+            { question: "کام هاوەڵ دە ساڵ خزمەتی پێغەمبەری ﷺ کرد و هەرگیز سەرزەنشتی نەکرد؟", options: ["عەبدوڵای کوڕی عومەر", "ئەنەسی کوڕی مالیک", "زەیدی کوڕی حاریسە", "ئوسامەی کوڕی زەید"], answer: "ئەنەسی کوڕی مالیک" },
+
+            { question: "پێغەمبەر ﷺ کێی بە 'شمشێری هەڵکێشراوی خوا' ناساند؟", options: ["عەلی کوڕی ئەبی تاڵیب", "خالیدی کوڕی ولید", "حەمزەی کوڕی عەبدولموتەلیب", "سەعدی کوڕی موعاز"], answer: "خالیدی کوڕی ولید" },
+
+            { question: "مامی پێغەمبەر ﷺ کە لە جەنگی ئوحوددا شەهید بوو، کێ بوو؟", options: ["ئەبو تاڵیب", "عەباس", "حەمزە", "ئەبو لەهەب"], answer: "حەمزە" },
+
+            // کات و ساتەکانی ژیان
+            { question: "پێغەمبەر ﷺ لە کام ساڵدا لە دایک بوو؟", options: ["عامی الفیل (ساڵی فیل)", "عامی الحزن", "عامی الوفود", "عامی الفتح"], answer: "عامی الفیل (ساڵی فیل)" },
+
+            { question: "پێغەمبەر ﷺ چەند ساڵ بوو کاتێک پێغەمبەرایەتی پێ درا؟", options: ["٣٠ ساڵ", "٣٥ ساڵ", "٤٠ ساڵ", "٤٥ ساڵ"], answer: "٤٠ ساڵ" },
+
+            { question: "پێغەمبەر ﷺ لە کام غاردا پێغەمبەرایەتی پێ درا؟", options: ["غاری سەور", "غاری حەڕا", "غاری کەعبە", "غاری ئوحود"], answer: "غاری حەڕا" },
+
+            { question: "کۆچی (هیجرەت) بۆ مەدینە لە کام ساڵدا ڕوویدا؟", options: ["٦١٠ زایینی", "٦٢٢ زایینی", "٦٣٠ زایینی", "٦٣٢ زایینی"], answer: "٦٢٢ زایینی" },
+
+            { question: "فەتحی مەککە (داگیرکردنی مەککە) لە کام ساڵدا بوو؟", options: ["٦ هیجری", "٨ هیجری", "١٠ هیجری", "٩ هیجری"], answer: "٨ هیجری" },
+
+            { question: "حەجی کۆتایی پێغەمبەر ﷺ لە کام ساڵدا بوو؟", options: ["٨ هیجری", "٩ هیجری", "١٠ هیجری", "١١ هیجری"], answer: "١٠ هیجری" },
+
+            { question: "پێغەمبەر ﷺ لە کام مانگدا وەفاتی کرد؟", options: ["موحەڕڕەم", "سەفەر", "ڕەبیعول ئەوول", "ڕەبیعول ئاخیر"], answer: "ڕەبیعول ئەوول" },
+
+            // وردەکارییەکانی تر
+            { question: "کە خەدیجە وەفاتی کرد، پێغەمبەر ﷺ چەند ساڵ تەنیا بوو پێش ئەوەی هاوسەرگیری تری بکات؟", options: ["یەک ساڵ", "دوو ساڵ", "سێ ساڵ", "چوار ساڵ"], answer: "سێ ساڵ" },
+
+            { question: "پێغەمبەر ﷺ خێزانەکانی بە چ ناوێک بانگ دەکرد؟", options: ["ئافرەتەکانم", "دایکامنی ئیمانداران", "هاوسەرەکانم", "بنەماڵەکەم"], answer: "دایکامنی ئیمانداران" },
+
+            { question: "پێغەمبەر ﷺ فەرموویەتی: 'دونیا ... ئافرەتێکی چاک و باشە'؟", options: ["تەنها", "باشترین نیعمەتی", "پێویستیەکی", "کەلوپەلی"], answer: "باشترین نیعمەتی" },
+
+            { question: "پێغەمبەر ﷺ چەند نەوەی لە ڕێگەی فاتیمەوە هەبوو؟", options: ["یەک (حەسەن)", "دوو (حەسەن و حوسەین)", "سێ", "چوار"], answer: "دوو (حەسەن و حوسەین)" },
+
+            { question: "کاتێک نەوەکانی (حەسەن یان حوسەین) لە سەر شانی دەچووینە کاتی سوژدەدا، پێغەمبەر ﷺ چی دەکرد؟", options: ["بە خێرایی سوژدەکەی کورت دەکردەوە", "دەیانخستەوە خوارەوە", "سوژدەکەی درێژ دەکردەوە تا هاتنە خوارەوە", "نوێژەکەی دەشکاند"], answer: "سوژدەکەی درێژ دەکردەوە تا هاتنە خوارەوە" },
+
+            { question: "پێغەمبەر ﷺ دەربارەی ئافرەتان فەرموویەتی: 'لە خواتان ... '؟", options: ["بەزەیی پێیان هەبن", "بترسن", "ڕێزیان بگرن", "وەسیەتم پێکردن"], answer: "وەسیەتم پێکردن" },
+
+            { question: "ئەنەس دەڵێت پێغەمبەر ﷺ: 'هیچ کەسێکم نەبینیوە بە سۆزتر بێت لەگەڵ ... '؟", options: ["ئافرەتان", "منداڵان", "پیران", "نەخۆشان"], answer: "منداڵان" },
+
+            { question: "پێغەمبەر ﷺ لەگەڵ عائیشە چ یارییەکی دەکرد؟", options: ["شەتڕەنج", "پێشبڕکێی ڕاکردن", "نێردە", "گێڕانەوەی چیرۆک"], answer: "پێشبڕکێی ڕاکردن" },
+
+            { question: "پێغەمبەر ﷺ لە ماڵەوە چ کارێکی دەکرد؟", options: ["تەنها پشوو دەدا", "پۆشاکی خۆی دەدوڕییەوە و مەڕەکەی دەدۆشی", "تەنها قورئان دەخوێند", "تەنها نوێژی دەکرد"], answer: "پۆشاکی خۆی دەدوڕییەوە و مەڕەکەی دەدۆشی" },
+
+            { question: "کاتێک هاوەڵێک شکایەتی لێکرد کە خێزانەکەی ناوی بە خراپی دەبات، پێغەمبەر ﷺ چ ئامۆژگاریەکی پێکرد؟", options: ["تەڵاقی بدە", "بەرگەی بگرە", "باشتر بە لەگەڵی", "بیهێڵەوە"], answer: "باشتر بە لەگەڵی" }
+           ,{
+                question: "پێغەمبەر ﷺ لە ڕووی شێوەی لاشەوە چۆن بوو؟",
+                options: ["زۆر قەڵەو و قورس", "زۆر لاواز و بێهێز", "پیاوێکی چوارشانە و بەهێز", "زۆر کورت باڵا"],
+                answer: "پیاوێکی چوارشانە و بەهێز"
+            },
+            {
+                question: "ئایا پێغەمبەر ﷺ ورگی هەبوو (دەروچوون و بەرزی لە سک و سنگیدا)؟",
+                options: ["بەڵێ، ورگێکی گەورەی هەبوو", "نەخێر، بەڵکو ڕاست و وەک یەکتری بوو", "تەنها کەمێک", "تەنها لە کۆتایی تەمەنیدا"],
+                answer: "نەخێر، بەڵکو ڕاست و وەک یەکتری بوو"
+            },
+            {
+                question: "باڵای پێغەمبەر ﷺ چۆن بوو؟",
+                options: ["زۆر درێژ", "زۆر کورت", "ناوەنجی و زیاتر بەلای درێژیدا دەچوو", "ناوەنجی و زیاتر بەلای کورتییدا دەچوو"],
+                answer: "ناوەنجی و زیاتر بەلای درێژیدا دەچوو"
+            },
+            {
+                question: "ڕووخساری موبارەکی پێغەمبەر ﷺ بە چی دەچووێنرا؟",
+                options: ["خۆر", "ئەستێرە", "مانگی چواردە", "گوڵ"],
+                answer: "مانگی چواردە"
+            },
+            {
+                question: "کام لە هاوەڵان دەڵێت: 'هیچ شتێک و هیچ کەسێکم لەو جوانتر نەبینیوە'؟",
+                options: ["جابری کوڕی سەمورە", "بەڕائی کوڕی عازیب", "ئەنەسی کوڕی مالیک", "عەلی کوڕی ئەبی تاڵیب"],
+                answer: "بەڕائی کوڕی عازیب"
+            },
+            {
+                question: "ڕەنگی پێستی پێغەمبەر ﷺ چۆن بوو؟",
+                options: ["ئەسمەر", "ڕەش", "سپییەکی تێکەڵ بە سووری (وەک گوڵ)", "زەرد"],
+                answer: "سپییەکی تێکەڵ بە سووری (وەک گوڵ)"
+            },
+            {
+                question: "ڕەنگی ڕیش و پرچی پێغەمبەر ﷺ چی بوو؟",
+                options: ["سپی", "خۆڵەمێشی", "ڕەش", "قاوەیی"],
+                answer: "ڕەش"
+            },
+            {
+                question: "تا کاتی کۆچی دوایی، پێغەمبەر ﷺ نزیکەی چەند تاڵە مووی سپی لە سەر و ڕیشیدا هەبوو؟",
+                options: ["نزیکەی ١٠٠ تاڵ", "نزیکەی ٥٠ تاڵ", "کەمتر لە بیست تاڵ", "هەمووی سپی ببوو"],
+                answer: "کەمتر لە بیست تاڵ"
+            },
+            {
+                question: "ئەنەس (ر.خ) لەبارەی دەستی پێغەمبەرەوە ﷺ چی وتووە؟",
+                options: ["زۆر زبر بوو", "زۆر سارد بوو", "لە ئاوریشم نەرمتر بوو", "زۆر ڕەق بوو"],
+                answer: "لە ئاوریشم نەرمتر بوو"
+            },
+            // وانەی سێیەم
+            {
+                question: "مۆری پێغەمبەرایەتی لە کوێی لاشەی پێغەمبەردا ﷺ بوو؟",
+                options: ["لەسەر شانی ڕاستی", "لەنێوان هەردوو شانەکانی و نزیکتر لە شانی چەپی", "لەسەر دڵی", "لەسەر ناوچەوانی"],
+                answer: "لەنێوان هەردوو شانەکانی و نزیکتر لە شانی چەپی"
+            },
+            {
+                question: "قەبارەی مۆری پێغەمبەرایەتی چەند بوو؟",
+                options: ["بەقەدەر هێلکەی مریشک", "بەقەدەر هێلکەی کۆتر", "بەقەدەر گوێزێک", "بەقەدەر فندقێک"],
+                answer: "بەقەدەر هێلکەی کۆتر"
+            },
+            {
+                question: "کام لەم سیفەتانە هی مۆری پێغەمبەرایەتی نەبوو؟",
+                options: ["پارچەیەکی بەرز بوو لەسەر لاشە", "ڕەنگی وەک پێستی لاشەی بوو", "لەگەڵ لاشەدا تەخت و یەکسان بوو", "دەوری بە چەند خاڵێک گیرابوو"],
+                answer: "لەگەڵ لاشەدا تەخت و یەکسان بوو"
+            },
+            {
+                question: "خاڵی پێغەمبەرایەتی (مۆر) لەسەر پشتی پێغەمبەر ﷺ تایبەت بوو بە خۆی، یان هەموو پێغەمبەران هەیانبوو؟",
+                options: ["هەموو پێغەمبەران هەیانبوو لەسەر پشتیان", "تەنها پێغەمبەرانی بەنی ئیسرائیل هەیانبوو", "تایبەت بوو، چونکە هی پێغەمبەرانی تر لەسەر دەستی ڕاستیان بوو", "تەنها هی پێغەمبەرانی تر لەسەر شانیان بوو"],
+                answer: "تایبەت بوو، چونکە هی پێغەمبەرانی تر لەسەر دەستی ڕاستیان بوو"
+            },
+            // وانەی چوارەم
+            {
+                question: "ئایا پێغەمبەر ﷺ پرچی دابەش دەکرد بۆ دوو بەش؟",
+                options: ["نەخێر، هەمیشە خاوی دەکردەوە", "بەڵێ، دواتر کردی بە دوو بەشەوە (پەرچەمی بەملا و لادا دادەهێنا)", "تەنها لە کاتی جەنگدا", "هەرگیز گرنگی پێنەدەدا"],
+                answer: "بەڵێ، دواتر کردی بە دوو بەشەوە (پەرچەمی بەملا و لادا دادەهێنا)"
+            },
+            {
+                question: "پێغەمبەر ﷺ لە کاتی داهێنانی پرچ و ڕیشی، زۆر حەزی لە بەکارهێنانی چی بوو؟",
+                options: ["ئاو", "ڕۆنی زەیتوون", "بۆنی خۆش (عەتر)", "خەنە"],
+                answer: "ڕۆنی زەیتوون"
+            },
+            {
+                question: "پێغەمبەر ﷺ فەرموویەتی کام سوورەتانە سەریان سپی کردووە؟",
+                options: ["البقرة و آل عمران", "النساء و المائدة", "هود، الواقعة، المرسلات، النبأ، التکویر", "الفاتحة و الإخلاص"],
+                answer: "هود، الواقعة، المرسلات، النبأ، التکویر"
+            },
+            // وانەی پێنجەم
+            {
+                question: "خۆشەویسترین پۆشاک لای پێغەمبەر ﷺ چی بوو؟",
+                options: ["کراس (دشداشە)", "جوبەی ڕۆمی", "عەبا", "پانتۆڵ"],
+                answer: "کراس (دشداشە)"
+            },
+            {
+                question: "خۆشەویسترین ڕەنگی جلوبەرگ لای پێغەمبەر ﷺ چی بوو؟",
+                options: ["ڕەش", "سەوز", "سوور", "سپی"],
+                answer: "سپی"
+            },
+            // وانەی شەشەم
+            {
+                question: "ئەنگوستیلەکەی پێغەمبەر ﷺ لە چی دروستکرابوو؟",
+                options: ["ئاڵتون", "زیو", "ئاسن", "مس"],
+                answer: "زیو"
+            },
+            {
+                question: "لەسەر ئەنگوستیلەکەی پێغەمبەر ﷺ چی نووسرابوو؟",
+                options: ["لا إله إلا الله", "محمد رسول الله", "الله اکبر", "سبحان الله"],
+                answer: "محمد رسول الله"
+            },
+            {
+                question: "نووسینی سەر ئەنگوستیلەکە لە چەند دێڕدا بوو؟",
+                options: ["یەک دێڕ", "دوو دێڕ", "سێ دێڕ", "چوار دێڕ"],
+                answer: "سێ دێڕ"
+            },
+            {
+                question: "دوای پێغەمبەر ﷺ ئەنگوستیلەکەی کەوتە دەستی کێ و لە کوێ لێی ون بوو؟",
+                options: ["ئەبوبەکر و لە مزگەوت لێی ون بوو", "عومەر و لە بازاڕ لێی ون بوو", "عوسمان و لە بیری ئەریس لێی ون بوو", "عەلی و لە کاتی جەنگدا لێی ون بوو"],
+                answer: "عوسمان و لە بیری ئەریس لێی ون بوو"
+            },
+            // وانەی حەوتەم
+            {
+                question: "ڕۆیشتنی پێغەمبەر ﷺ چۆن بوو؟",
+                options: ["زۆر بە هێواشی", "خێرا و بەهێز، وەک ئەوەی لە بەرزییەوە بێتە خوارەوە", "بە لەنجە و لار", "بە پەلە و شپرزەیی"],
+                answer: "خێرا و بەهێز، وەک ئەوەی لە بەرزییەوە بێتە خوارەوە"
+            },
+            {
+                question: "کاتێک پێغەمبەر ﷺ ئاوڕی دەدایەوە، چۆن ئاوڕی دەدایەوە؟",
+                options: ["تەنها بە سەری", "بە هەموو جەستەیەوە دەسوڕا", "تەنها بە چاوەکانی", "زۆر بە کەمی ئاوڕی دەدایەوە"],
+                answer: "بە هەموو جەستەیەوە دەسوڕا"
+            },
+            {
+                question: "پێغەمبەر ﷺ دوای نوێژی بەیانی تا کاتی خۆرهەڵاتن چۆن دادەنیشت؟",
+                options: ["پاڵی دەدایەوە", "ڕادەکشا", "چوارمشقی دادەنیشت", "دەڕۆیشت"],
+                answer: "چوارمشقی دادەنیشت"
+            },
+            {
+                question: "ئایا پێغەمبەر ﷺ لە کاتی پاڵکەوتن و شانداداندا نانی دەخوارد؟",
+                options: ["بەڵێ، زۆرجار", "نەخێر، هەرگیز", "تەنها ئەگەر ناچار بووایە", "تەنها خورمای دەخوارد"],
+                answer: "نەخێر، هەرگیز"
+            },
+            // وانەی هەشتەم و نۆیەم
+            {
+                question: "ئایا پێغەمبەر ﷺ هەرگیز ڕەخنەی لە خواردن دەگرت؟",
+                options: ["بەڵێ، ئەگەر بەدڵی نەبووایە", "نەخێر، ئەگەر حەزی لێبووایە دەیخوارد، ئەگەرنا وازی لێدەهێنا", "تەنها ئەگەر سوێر بووایە", "تەنها ئەگەر تفت بووایە"],
+                answer: "نەخێر، ئەگەر حەزی لێبووایە دەیخوارد، ئەگەرنا وازی لێدەهێنا"
+            },
+            {
+                question: "پێغەمبەر ﷺ گەدەی بە چەند بەش دابەش دەکرد؟",
+                options: ["دوو بەش: خواردن و ئاو", "یەک بەش: تەنها خواردن", "سێ بەش: خواردن، ئاو، هەوا", "چوار بەش"],
+                answer: "سێ بەش: خواردن، ئاو، هەوا"
+            },
+            {
+                question: "خۆشەویسترین جۆری خواردنەوە لای پێغەمبەر ﷺ چی بوو؟",
+                options: ["ئاوی گەرم", "شیر", "خواردنەوەی شیرین و سارد", "ئاوی کانزایی"],
+                answer: "خواردنەوەی شیرین و سارد"
+            },
+            {
+                question: "پێغەمبەر ﷺ حەزی لە کام بەشی گۆشتی ئاژەڵ بوو؟",
+                options: ["دڵ", "جگەر", "باسک", "پشت"],
+                answer: "باسک"
+            },
+            {
+                question: "پێغەمبەر ﷺ ئاوی چۆن دەخواردەوە؟",
+                options: ["بە یەک هەناسە", "بە دوو هەناسە", "بە سێ هەناسە (سێ جار)", "بەپێوە"],
+                answer: "بە سێ هەناسە (سێ جار)"
+            },
+            // وانەی دەیەم
+            {
+                question: "خۆشترین و چاکترین جۆری بۆن لای پێغەمبەر ﷺ چی بوو؟",
+                options: ["عەمبەر", "میسک", "بۆنی گوڵ", "بۆنی دار"],
+                answer: "میسک"
+            },
+            {
+                question: "پێغەمبەر ﷺ چۆن کلی لە چاو دەکرد؟",
+                options: ["یەک جار بۆ هەر چاوێک", "دوو جار", "سێ جار بۆ هەر چاوێک (تاق تاق)", "هەفتەی جارێک"],
+                answer: "سێ جار بۆ هەر چاوێک (تاق تاق)"
+            },
+            // وانەی یازدەیەم
+            {
+                question: "قسەکردنی پێغەمبەر ﷺ چ تایبەتمەندییەکی هەبوو؟",
+                options: ["زۆر بە پەلە بوو", "ڕستەکانی لە یەک جیادەکردەوە، نە درێژ و نە کورت", "زۆر وشکی و ڕەقی پێوە دیار بوو", "زۆر بە هێواشی قسەی دەکرد"],
+                answer: "ڕستەکانی لە یەک جیادەکردەوە، نە درێژ و نە کورت"
+            },
+            {
+                question: "زۆربەی پێکەنینەکانی پێغەمبەر ﷺ چۆن بوون؟",
+                options: ["قاقای بەرز", "تەنها زەردەخەنە", "پێکەنینی دەنگدار", "زۆر بە کەمی پێدەکەنی"],
+                answer: "تەنها زەردەخەنە"
+            },
+            // وانەی دوازدەیەم
+            {
+                question: "کاتێک پێغەمبەر ﷺ بە دەنگی بەرز پێبکەنیایە، تا کوێ دەگەیشت؟",
+                options: ["تەنها ددانەکانی پێشەوەی دەردەکەوت", "هەموو ددانەکانی دەردەکەوت", "تەنها لێوەکانی دەجوڵا", "قاقایەکی گەورە بوو"],
+                answer: "تەنها ددانەکانی پێشەوەی دەردەکەوت"
+            },
+            {
+                question: "عەبدوڵای کوڕی حاریس دەڵێت: 'هیچ کەسێکم نەبینیوە لە پێغەمبەر ﷺ ...'؟",
+                options: ["قسەزانتر بێت", "جوامێرتر بێت", "زیاتر زەردەخەنەی هەبووبێت", "ئازاتر بێت"],
+                answer: "زیاتر زەردەخەنەی هەبووبێت"
+            },
+            {
+                question: "ئایا پێغەمبەر ﷺ گاڵتەی دەکرد؟",
+                options: ["نەخێر، هەرگیز", "بەڵێ، بەڵام جگە لە قسەی هەق هیچی تری نەدەفەرموو", "بەڵێ، گاڵتەی زۆری دەکرد", "تەنها لەگەڵ منداڵان"],
+                answer: "بەڵێ، بەڵام جگە لە قسەی هەق هیچی تری نەدەفەرموو"
+            },
+            // وانەی سێزدەیەم
+            {
+                question: "گریانی پێغەمبەر ﷺ چۆن بوو؟",
+                options: ["بە دەنگی بەرز و هاوار", "فرمێسک لە چاوەکانی دەهات و دەنگی گزەگزی سنگی دەبیسترا", "تەنها چاوەکانی تەڕ دەبوون", "هەرگیز نەگریاوە"],
+                answer: "فرمێسک لە چاوەکانی دەهات و دەنگی گزەگزی سنگی دەبیسترا"
+            },
+            {
+                question: "پێغەمبەر ﷺ لە کاتی نوێژی شەودا بۆچی زۆر دەگریا؟",
+                options: ["لە ترسی سزای خوا", "لە داواکردنی لێخۆشبوون", "وەک سوپاسگوزارییەک بۆ خوا (ئەی بەندەیەکی سوپاسگوزار نەبم؟)", "بۆ کەمکردنەوەی خەمەکانی"],
+                answer: "وەک سوپاسگوزارییەک بۆ خوا (ئەی بەندەیەکی سوپاسگوزار نەبم؟)"
+            },
+            // وانەی چواردەیەم
+            {
+                question: "قورئان خوێندنی پێغەمبەر ﷺ چۆن بوو؟",
+                options: ["زۆر بە پەلە بوو", "وشە بە وشە و ڕوون بوو، لە کۆتایی هەر ئایەتێکدا دەوەستا", "تەنها بە دڵ دەیخوێند", "بە یەک نەفەس چەند ئایەتێکی دەخوێند"],
+                answer: "وشە بە وشە و ڕوون بوو، لە کۆتایی هەر ئایەتێکدا دەوەستا"
+            },
+            // وانەی پازدەیەم
+            {
+                question: "باشترین خواردنی پارشێو لای بروادار چییە بەپێی فەرموودە؟",
+                options: ["شیر", "گۆشت", "خورما", "نانی جۆ"],
+                answer: "خورما"
+            },
+            {
+                question: "پێغەمبەر ﷺ ڕۆژووەکەی بە چی دەشکاند ئەگەر خورمای دەست نەکەوتبا؟",
+                options: ["شیر", "هەنگوین", "ئاو", "سێو"],
+                answer: "ئاو"
+            },
+            {
+                question: "ڕۆژووی کام ڕۆژانە قەدەغەیە؟",
+                options: ["دووشەممە و پێنجشەممە", "ڕۆژی جەژنی ڕەمەزان و قوربان", "سێ ڕۆژی ناوەڕاستی مانگ", "ڕۆژی عاشورا"],
+                answer: "ڕۆژی جەژنی ڕەمەزان و قوربان"
+            },
+            // وانەی شازدەیەم و حەڤدەیەم
+            {
+                question: "پێغەمبەر ﷺ فەرموویەتی: 'نووری دیدە و ئاسوودەییم لە ... دایە'؟",
+                options: ["ڕۆژووگرتن", "نوێژ", "خێرکردن", "قورئان خوێندن"],
+                answer: "نوێژ"
+            },
+            {
+                question: "خۆشەویسترین نوێژی سوننەت لای پێغەمبەر ﷺ کامە بوو؟",
+                options: ["ئەو نوێژەی کە بەردەوام بووایە لەسەری ئەگەرچیش کەمیش بێت", "نوێژی چێشتەنگاو", "نوێژی شەو", "سوننەتی بەیانی"],
+                answer: "ئەو نوێژەی کە بەردەوام بووایە لەسەری ئەگەرچیش کەمیش بێت"
+            },
+            {
+                question: "پێغەمبەر ﷺ شەونوێژی بە چەند ڕکات دەست پێدەکرد؟",
+                options: ["چوار ڕکاتی درێژ", "دوو ڕکاتی سووک و کورت", "یەک ڕکات ویتر", "هەشت ڕکات"],
+                answer: "دوو ڕکاتی سووک و کورت"
+            },
+            // وانەی هەژدەیەم
+            {
+                question: "زۆرترین دوعای پێغەمبەر ﷺ چی بوو؟",
+                options: ["اللهم إنك عفو تحب العفو فاعف عني", "ربنا آتنا في الدنیا حسنة...", "یا مقلب القلوب ثبت قلبي علی دینك", "اللهم أعني علی ذكرك وشكرك..."],
+                answer: "ربنا آتنا في الدنیا حسنة..."
+            },
+            {
+                question: "دوعای پێغەمبەر ﷺ لە شەوی قەدردا (ليلة القدر) چی بوو؟",
+                options: ["اللهم إنك عفو تحب العفو فاعف عني", "ربنا آتنا في الدنیا حسنة...", "یا مقلب القلوب ثبت قلبي علی دینك", "سبحان الله وبحمده"],
+                answer: "اللهم إنك عفو تحب العفو فاعف عني"
+            },
+            // وانەی نۆزدەیەم
+            {
+                question: "ئایا پێغەمبەر ﷺ ڕازی بوو هاوەڵان لەبەری هەڵسن کاتێک دەهاتە مەجلیسەوە؟",
+                options: ["بەڵێ، چونکە ڕێزی لێدەگیرا", "نەخێر، چونکە پێی ناخۆش بوو", "تەنها گەورە پیاوان", "تەنها لە مزگەوتدا"],
+                answer: "نەخێر، چونکە پێی ناخۆش بوو"
+            },
+            // وانەی بیستەم
+            {
+                question: "یەکێک لە شێوازەکانی فێرکردنی پێغەمبەر ﷺ ئەوەبوو کە پرسیاری دەکرد، بۆچی؟",
+                options: ["بۆ ئەوەی بزانێت کێ زیرەکە", "بۆ ئەوەی شتەکە باشتر لە مێشک و دڵیاندا بچەسپێت", "بۆ تاقیکردنەوەیان", "بۆ کات بەسەربردن"],
+                answer: "بۆ ئەوەی شتەکە باشتر لە مێشک و دڵیاندا بچەسپێت"
+            },
+            // وانەی بیست و یەکەم
+            {
+                question: "کام لەم سیفەتانە بەشێک بوو لە ڕەوشتی پێغەمبەر ﷺ؟",
+                options: ["ڕووخۆشی و بەزەیی", "تووڕەیی و توندوتیژی", "ڕەخنەگرتن", "خۆ بەزل زانین"],
+                answer: "ڕووخۆشی و بەزەیی"
+            },
+            // وانەی بیست و دووەم
+            {
+                question: "ئامانجی سەرەکی جەنگەکانی پێغەمبەر ﷺ چی بوو؟",
+                options: ["دەستکەوتنی سەروەت و سامان", "داگیرکردنی وڵاتان", "بڵاوکردنەوەی ئایینی ئیسلام و دادگەری", "تۆڵەسەندنەوە"],
+                answer: "بڵاوکردنەوەی ئایینی ئیسلام و دادگەری"
+            },
+            // وانەی بیست و سێیەم
+            {
+                question: "پێغەمبەر ﷺ فەرموویەتی چاکەکردن لەگەڵ دایکدا دەبێت چەند ئەوەندەی باوک بێت؟",
+                options: ["دوو ئەوەندە", "سێ ئەوەندە", "چوار ئەوەندە", "وەک یەک بن"],
+                answer: "سێ ئەوەندە"
+            },
+            {
+                question: "پێغەمبەر ﷺ فەرموویەتی باشترینتان ئەوانەن کە...؟",
+                options: ["زۆرترین نوێژ دەکەن", "لەگەڵ خێزانەکانیاندا باشن", "زۆرترین ماڵ دەبەخشن", "زۆرترین زیکر دەکەن"],
+                answer: "لەگەڵ خێزانەکانیاندا باشن"
+            },
+            // وانەی بیست و چوار و پێنج
+            {
+                question: "هیرەقل، پاشای ڕۆم، بۆچی ئەبو سوفیانی بانگ کرد؟",
+                options: ["بۆ بازرگانی کردن", "بۆ ئەوەی پرسیاری لێبکات دەربارەی ئەو پێغەمبەرەی دەرکەوتووە", "بۆ ئەوەی بیکات بە سیخوڕ", "بۆ ئەوەی سزای بدات"],
+                answer: "بۆ ئەوەی پرسیاری لێبکات دەربارەی ئەو پێغەمبەرەی دەرکەوتووە"
+            },
+            {
+                question: "یەکێک لەو پرسیارانەی هیرەقل لە ئەبو سوفیانی کرد چی بوو؟",
+                options: ["ئایا پێشتر درۆی کردووە؟", "ئایا دەوڵەمەندە یان هەژار؟", "ڕەنگی پێستی چییە؟", "هەموو وەڵامەکان ڕاستن"],
+                answer: "ئایا پێشتر درۆی کردووە؟"
+            },
+            {
+                question: "دوای گفتوگۆکە، هیرەقل چ دەرئەنجامێکی وەرگرت؟",
+                options: ["کە محەممەد پیاوێکی سیاسییە", "کە محەممەد ساحیرە", "کە بەڕاستی پێغەمبەری خوایە", "کە بانگەشەکەی کاتییە"],
+                answer: "کە بەڕاستی پێغەمبەری خوایە"
+            },
+            // وانەی بیست و شەشەم
+            {
+                question: "کۆچی دوایی پێغەمبەر ﷺ لە چ تەمەنێکدا بوو؟",
+                options: ["٦٠ ساڵی", "٦٣ ساڵی", "٦٥ ساڵی", "٧٠ ساڵی"],
+                answer: "٦٣ ساڵی"
+            },
+            {
+                question: "کۆتا نوێژی پێغەمبەر ﷺ وەک ئیمام بۆ خەڵک کام نوێژە بوو؟",
+                options: ["نوێژی بەیانی", "نوێژی هەینی", "نوێژی عەسر", "نوێژی مەغریب"],
+                answer: "نوێژی هەینی"
+            },
+            {
+                question: "کۆتا وتەی پێغەمبەر ﷺ پێش کۆچی دوایی چی بوو؟",
+                options: ["ئاگاتان لە ماڵی یەتیمان بێت", "ئاگاتان لە نوێژەکانتان و بەردەستەکانتان بێت", "یەکگرتوو بن", "قورئان و سوننەت جێمەهێڵن"],
+                answer: "ئاگاتان لە نوێژەکانتان و بەردەستەکانتان بێت"
+            },
+            {
+                question: "کام هاوەڵ لە سەرەتادا باوەڕی بە کۆچی دوایی پێغەمبەر ﷺ نەدەکرد و هەڕەشەی دەکرد؟",
+                options: ["ئەبوبەکری سدیق", "عوسمانی کوڕی عەففان", "عومەری کوڕی خەتاب", "عەلی کوڕی ئەبی تاڵیب"],
+                answer: "عومەری کوڕی خەتاب"
+            },
+            {
+                question: "ئەبوبەکری سدیق (ر.خ) بە چ ئایەتێک خەڵکەکەی هێور کردەوە؟",
+                options: ["ئایەتی 'وما محمد إلا رسول قد خلت من قبله الرسل...'", "ئایەتولکورسی", "ئایەتی 'إنك میت وإنهم میتون'", "هەردوو وەڵامی (أ) و (ج) ڕاستن"],
+                answer: "هەردوو وەڵامی (أ) و (ج) ڕاستن"
+            },
+            {
+                question: "پێغەمبەر ﷺ لە کوێ نێژرا؟",
+                options: ["لە گۆڕستانی بەقیع", "لە تەنیشت کەعبە", "لە مزگەوتی قوبا", "لە ژوورەکەی خۆی لە ماڵی عائیشە (ر.ع)"],
+                answer: "لە ژوورەکەی خۆی لە ماڵی عائیشە (ر.ع)"
+            },
+            // وانەی بیست و حەوتەم
+            {
+                question: "پێغەمبەر ﷺ دەربارەی بینینی لە خەودا چی فەرمووە؟",
+                options: ["هەرکەس منی لە خەودا بینی ئەوە بە دڵنیایی منی بینیوە، چونکە شەیتان ناتوانێت خۆی بخاتە سەر شێوەی من", "بینینی من لە خەودا خەونێکی ئاساییە", "تەنها پیاوچاکان دەتوانن بمبینن", "بینینم لە خەودا مانای مردنە"],
+                answer: "هەرکەس منی لە خەودا بینی ئەوە بە دڵنیایی منی بینیوە، چونکە شەیتان ناتوانێت خۆی بخاتە سەر شێوەی من"
+            },
+            // وانەی ١ و ٢: شێوەی پێغەمبەر ﷺ
+            { question: "شێوەی جەستەی پێغەمبەر ﷺ چۆن بوو؟", options: ["زۆر قەڵەو", "زۆر لاواز", "پڕ بوو، نە قەڵەو و نە لاواز", "ماسولکەیی بوو"], answer: "پڕ بوو، نە قەڵەو و نە لاواز" },
+            { question: "کام لەم هاوەڵانە ڕووخساری پێغەمبەری ﷺ بە مانگی چواردە چواندووە؟", options: ["بەڕائی کوڕی عازیب", "ئەنەسی کوڕی مالیک", "جابری کوڕی سەمورە", "عەلی کوڕی ئەبی تاڵیب"], answer: "جابری کوڕی سەمورە" },
+            { question: "ڕەنگی پێستی پێغەمبەر ﷺ چۆن بوو؟", options: ["سپییەکی زەردباو", "ئەسمەر", "سپییەکی تێکەڵ بە سووری (دەڵێی گوڵە)", "قاوەیی"], answer: "سپییەکی تێکەڵ بە سووری (دەڵێی گوڵە)" },
+            { question: "ژمارەی تاڵە سپییەکانی پرچ و ڕیشی موبارەکی لە کاتی وەفاتدا چەند بوو؟", options: ["نزیکەی ١٠٠", "زیاتر لە ٥٠", "نەدەگەیشتە ٢٠ تاڵ", "هەمووی سپی ببوو"], answer: "نەدەگەیشتە ٢٠ تاڵ" },
+            { question: "کام هاوەڵ دەڵێت دەستی پێغەمبەر ﷺ 'لە ئاوریشم نەرمتر بوو'؟", options: ["ئەبو هورەیرە", "ئەنەسی کوڕی مالیک", "عائیشە", "عومەری کوڕی خەتاب"], answer: "ئەنەسی کوڕی مالیک" },
+
+            // وانەی ٣: مۆری پێغەمبەرایەتی
+            { question: "مۆری پێغەمبەرایەتی لە کام لای جەستەیەوە نزیکتر بوو؟", options: ["شانی ڕاست", "ناوەڕاستی پشت", "شانی چەپ", "مل"], answer: "شانی چەپ" },
+            { question: "ڕەنگی مۆری پێغەمبەرایەتی چۆن بوو؟", options: ["ڕەش", "سوور", "وەک ڕەنگی پێستی لاشەی", "سەوزباو"], answer: "وەک ڕەنگی پێستی لاشەی" },
+            { question: "کام هاوەڵ لە منداڵیدا بەهۆی دوعای پێغەمبەر ﷺ لەسەر مۆرەکە، شیفای بۆ هات و تەمەنێکی درێژ و تەندروستی بەڕێکرد؟", options: ["جابری کوڕی سەمورە", "عەبدوڵای کوڕی عەباس", "سائیبی کوڕی یەزید", "حەسەنی کوڕی عەلی"], answer: "سائیبی کوڕی یەزید" },
+
+            // وانەی ٤: پرچی پێغەمبەر ﷺ
+            { question: "کام لەم سوورەتانە هۆکار بوون بۆ سپیبوونی تاڵە مووەکانی پێغەمبەر ﷺ؟", options: ["البقرة و آل عمران", "الکهف و یس", "هود و الواقعة و المرسلات...", "الملک و القلم"], answer: "هود و الواقعة و المرسلات..." },
+            { question: "پێغەمبەر ﷺ لە دەستپێکی کارەکانیدا حەزی دەکرد لە کام لاوە دەست پێبکات؟", options: ["چەپ", "ڕاست", "ناوەڕاست", "فەرقی نەبوو"], answer: "ڕاست" },
+
+            // وانەی ٥: پۆشاکی پێغەمبەر ﷺ
+            { question: "خۆشەویسترین پۆشاک لای پێغەمبەر ﷺ چی بوو؟", options: ["عەبا", "جوببە", "کراس (دشداشە)", "ئیزار"], answer: "کراس (دشداشە)" },
+            { question: "ئایا پێغەمبەر ﷺ پۆشاکی ڕەنگی سووری پۆشیوە؟", options: ["نەخێر، هەرگیز", "بەڵێ، سوورباو (خەتی سوور و سپی)", "تەنها سووری تۆخ", "تەنها لە جەنگدا"], answer: "بەڵێ، سوورباو (خەتی سوور و سپی)" },
+
+            // وانەی ٦: ئەنگوستیلە
+            { question: "نووسینی سەر ئەنگوستیلەکەی پێغەمبەر ﷺ چۆن هەڵکەندرابوو؟", options: ["محمد لە سەرەوە، رسول لە ناوەڕاست، الله لە خوارەوە", "الله لە سەرەوە، رسول لە ناوەڕاست، محمد لە خوارەوە", "هەمووی لە یەک دێڕدا", "بە شێوەی بازنەیی"], answer: "الله لە سەرەوە، رسول لە ناوەڕاست، محمد لە خوارەوە" },
+            { question: "پێغەمبەر ﷺ بۆچی ئەنگوستیلەی لە زێڕ فڕێدا؟", options: ["چونکە لێی ون بوو", "چونکە شکا", "پێش حەرامبوونی بوو، دواتر بۆ پیاوان حەرام کرا", "دیاری دا بە یەکێک"], answer: "پێش حەرامبوونی بوو، دواتر بۆ پیاوان حەرام کرا" },
+
+            // وانەی ٧: ڕۆیشتن و دانیشتن
+            { question: "ڕۆیشتنی پێغەمبەر ﷺ چۆن بوو؟", options: ["زۆر هێواش", "بە شان و شەوکەت", "خێرا و بەهێز، وەک ئەوەی لە بەرزییەوە بێتە خوارەوە", "بە لەنجە و لار"], answer: "خێرا و بەهێز، وەک ئەوەی لە بەرزییەوە بێتە خوارەوە" },
+            { question: "ئایا پێغەمبەر ﷺ هەرگیز لە مزگەوتدا لەسەر پشت ڕاکشاوە؟", options: ["نەخێر، قەدەغەیە", "بەڵێ، کاتێک ماندوو بووە و قاچێکی خستۆتە سەر ئەوی تر", "تەنها لە ماڵەوە", "تەنها بۆ خەوتن"], answer: "بەڵێ، کاتێک ماندوو بووە و قاچێکی خستۆتە سەر ئەوی تر" },
+
+            // وانەی ٨ و ٩: خواردن
+            { question: "پێغەمبەر ﷺ حەزی لە کام جۆرە خواردن بوو؟", options: ["گۆشتی وشککراو", "شۆربا", "کولەکە", "برنج"], answer: "کولەکە" },
+            { question: "ئایا پێغەمبەر ﷺ بە پاڵدانەوە نانی خواردووە؟", options: ["بەڵێ، زۆرجار", "تەنها لە میوانیدا", "نەخێر، هەرگیز", "تەنها کاتێک نەخۆش بووبێت"], answer: "نەخێر، هەرگیز" },
+            { question: "کام لەم میوانە پێکەوە دەخوران لەلایەن پێغەمبەرەوە ﷺ؟", options: ["خورما و شیر", "شوتی و خورمای تازە", "هەنگوین و نان", "گۆشت و سەوزە"], answer: "شوتی و خورمای تازە" },
+
+            // وانەی ١٠: بۆنخۆشکردن
+            { question: "چاکترین جۆری بۆن لای پێغەمبەر ﷺ چی بوو؟", options: ["بۆنی گوڵ", "عەمبەر", "میسک", "بۆنی دار"], answer: "میسک" },
+            { question: "کلی چاو چ سوودێکی هەیە بەپێی فەرموودە؟", options: ["چاو بەهێز دەکات", "برژانگ دەڕوێنێت", "چاو ڕوون دەکاتەوە و برژانگ دەڕوێنێت", "بۆ جوانییە"], answer: "چاو ڕوون دەکاتەوە و برژانگ دەڕوێنێت" },
+
+            // وانەی ١١ و ١٢: قسەکردن و پێکەنین
+            { question: "پێکەنینی پێغەمبەر ﷺ زۆربەی کات چۆن بوو؟", options: ["قاقای بەرز", "بێدەنگ", "تەنها زەردەخەنە", "پێکەنینی دەنگ نزم"], answer: "تەنها زەردەخەنە" },
+            { question: "ئایا پێغەمبەر ﷺ لە گاڵتەکردنیشدا ڕاستگۆ بوو؟", options: ["نەخێر، هەندێکجار بۆ خۆشی زیادەڕۆیی دەکرد", "بەڵێ، جگە لە هەق هیچی نەدەوت", "گاڵتەی نەدەکرد", "تەنها گاڵتەی کرداریی دەکرد"], answer: "بەڵێ، جگە لە هەق هیچی نەدەوت" },
+
+            // وانەی ١٣: گریان
+            { question: "گریانی پێغەمبەر ﷺ بۆ وەفاتی ئیبراهیمی کوڕی، نیشانەی چی بوو؟", options: ["بێئارامی", "ناڕەزایی لە قەدەر", "سۆز و بەزەیی", "خەمۆکی"], answer: "سۆز و بەزەیی" },
+
+            // وانەی ١٤ و ١٥: قورئان و ڕۆژوو
+            { question: "باشترین کردەوە لای خوا کامەیە؟", options: ["ئەو کردەوەیەی زۆرە", "ئەوەی بەردەوامە ئەگەر کەمیش بێت", "ئەوەی بە نهێنی دەکرێت", "ئەوەی لە مانگی ڕەمەزاندا دەکرێت"], answer: "ئەوەی بەردەوامە ئەگەر کەمیش بێت" },
+            { question: "جیاوازی نێوان ڕۆژووی موسڵمانان و خاوەن کتێبەکان (جوولەکە و مەسیحی) چییە؟", options: ["خواردنی پارشێو", "درێژی ماوەی ڕۆژوو", "جۆری خواردن", "کاتی بەربانگ"], answer: "خواردنی پارشێو" },
+
+            // وانەی ١٦ و ١٧: نوێژ
+            { question: "نوێژ کەی و لە کوێ فەرز کرا؟", options: ["لە مەککە، پێش کۆچ", "لە مەدینە، دوای کۆچ", "لە شەوی ئیسرا و میعراجدا", "لە غاری حەڕا"], answer: "لە شەوی ئیسرا و میعراجدا" },
+            { question: "کاتێک پێغەمبەر ﷺ لە شەونوێژدا بە ئایەتێک دەگەیشت کە باسی سزای تێدابوو، چی دەکرد؟", options: ["بە خێرایی دەیخوێند", "پەنای دەگرت بە خوا لە سزا", "دەگریا", "دوعای دەکرد"], answer: "پەنای دەگرت بە خوا لە سزا" },
+
+            // وانەی ١٨ و ١٩: دوعا و خاکەڕایی
+            { question: "کام لەم سیفەتانە نیشانەی خاکەڕایی پێغەمبەر ﷺ نەبوو؟", options: ["سواری گوێدرێژ دەبوو", "سەردانی نەخۆشی دەکرد", "جلوبەرگی گرانبەهای دەپۆشی", "کاروباری ماڵەوەی خۆی دەکرد"], answer: "جلوبەرگی گranبەهای دەپۆشی" },
+            { question: "پێغەمبەر ﷺ لەبارەی زیادەڕۆیی لە مەدحکردنیدا چی فەرمووە؟", options: ["'مەدحم بکەن چونکە شایەنم'", "'زیدەڕۆیی مەکەن وەک گاورەکان لە مەدحی عیسا کردیان'", "'بێدەنگ بن'", "'تەنها بە شیعر مەدحم بکەن'"], answer: "'زیدەڕۆیی مەکەن وەک گاورەکان لە مەدحی عیسا کردیان'" },
+
+            // وانەی ٢٠ و ٢١: فێرکردن و ڕەوشت
+            { question: "یەکێک لە شێوازەکانی فێرکردنی پێغەمبەر ﷺ بۆ چەسپاندنی زانیاری چی بوو؟", options: ["تەنها وتنەوە", "سێ جار دووبارەکردنەوەی بابەتە گرنگەکان", "نووسینەوە", "تاقیکردنەوەی لەناکاو"], answer: "سێ جار دووبارەکردنەوەی بابەتە گرنگەکان" },
+            { question: "کاتێک هاوەڵێک هەڵەی دەکرد، پێغەمبەر ﷺ زۆربەی جار چۆن ڕاستی دەکردەوە؟", options: ["بە تووڕەیی", "لەبەرچاوی خەڵک ئیحراجی دەکرد", "بە شێوەی ناڕاستەوخۆ و گشتی باسی هەڵەکەی دەکرد بێ ناو هێنان", "سزای دەدا"], answer: "بە شێوەی ناڕاستەوخۆ و گشتی باسی هەڵەکەی دەکرد بێ ناو هێنان" },
+
+            // وانەی ٢٢ و ٢٣: جەنگ و ئافرەتان
+            { question: "لە جەنگەکاندا کوشتنی کام لەمانە قەدەغە کرابوو؟", options: ["سەرکردەکان", "پیاوە بەهێزەکان", "ئافرەت و منداڵ و پیر و پیاوانی ئایینی", "هەموو ئەوانەی چەکدار نەبوون"], answer: "ئافرەت و منداڵ و پیر و پیاوانی ئایینی" },
+            { question: "باشترین نیعمەت و چێژ لە دنیادا بەپێی فەرموودە چییە؟", options: ["ماڵ و سامان", "دەسەڵات", "ئافرەتێکی چاک و باش", "زانست و زانیاری"], answer: "ئافرەتێکی چاک و باش" },
+
+            // وانەی ٢٤ و ٢٥: شایەتی دوژمن
+            { question: "کاتێک هیرەقل لە ئەبو سوفیانی پرسی 'ئایا شوێنکەوتووانی زیاد دەکەن یان کەم؟'، وەڵامەکەی چی بوو؟", options: ["کەم دەکەن", "وەک خۆیانن", "بەردەوام زیاد دەکەن", "هەندێکجار زیاد و هەندێکجار کەم"], answer: "بەردەوام زیاد دەکەن" },
+            { question: "ئەنجامی کۆتایی گفتوگۆی هیرەقل و ئەبو سوفیان چی بوو؟", options: ["هیرەقل گاڵتەی بە قسەکان کرد", "هیرەقل دڵنیا بوو کە محەممەد ﷺ پێغەمبەری خوایە", "ئەبو سوفیان موسڵمان بوو", "هیچ ئەنجامێکی نەبوو"], answer: "هیرەقل دڵنیا بوو کە محەممەد ﷺ پێغەمبەری خوایە" },
+
+            // وانەی ٢٦ و ٢٧: کۆچی دوایی و خەون
+            { question: "کۆتا وتەی پێغەمبەر ﷺ پێش وەفات چی بوو؟", options: ["'ماڵ و سامانم بە خێر دابەش بکەن'", "'ئاگاتان لە نوێژەکانتان و بەردەستەکانتان بێت'", "'یەکگرتوو بن'", "'قورئانم بۆ بخوێنن'"], answer: "'ئاگاتان لە نوێژەکانتان و بەردەستەکانتان بێت'" },
+            { question: "کام هاوەڵ بە خوێندنەوەی ئایەتی 'وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ...' خەڵکەکەی ئارام کردەوە؟", options: ["عومەری کوڕی خەتاب", "عەلی کوڕی ئەبی تاڵیب", "عوسمانی کوڕی عەففان", "ئەبوبەکری سدیق"], answer: "ئەبوبەکری سدیق" },
+            { question: "پێغەمبەر ﷺ لە کوێ بە خاک سپێردرا؟", options: ["گۆڕستانی بەقیع", "کێوی ئوحود", "لە ژوورەکەی خۆی لە ماڵی دایکی ئیمانداران عائیشە", "تەنیشت کەعبە"], answer: "لە ژوورەکەی خۆی لە ماڵی دایکی ئیمانداران عائیشە" },
+            { question: "بینینی پێغەمبەر ﷺ لە خەودا بەڵگەیە لەسەر چی؟", options: ["خەونێکی ئاساییە", "بینەر تەمەنی درێژ دەبێت", "بینەر بەڕاستی پێغەمبەری ﷺ بینیوە چونکە شەیتان ناتوانێت خۆی بخاتە شێوەی ئەو", "نیشانەی مردنە"], answer: "بینەر بەڕاستی پێغەمبەری ﷺ بینیوە چونکە شەیتان ناتوانێت خۆی بخاتە شێوەی ئەو" },
+            // شێوەی دەرەوەی پێغەمبەر ﷺ (وردەکاری زیاتر)
+            { question: "کام لەم وەسفانە بۆ شێوەی جەستەی پێغەمبەر ﷺ ڕاستە؟", options: ["زۆر قەڵەو بوو", "زۆر لاواز بوو", "جەستەی پڕ بوو، نە قەڵەو و نە لاواز", "سکێکی گەورەی هەبوو"], answer: "جەستەی پڕ بوو، نە قەڵەو و نە لاواز" },
+            { question: "ئەنەسی کوڕی مالیک بۆنی پێغەمبەری ﷺ بە چی چواندووە؟", options: ["میسک و عەنبەر", "لە میسک و عەنبەریش خۆشتر", "بۆنی گوڵی یاسەمین", "بۆنی باران"], answer: "لە میسک و عەنبەریش خۆشتر" },
+            { question: "پێغەمبەر ﷺ لە ڕووی باڵاوە چۆن بوو؟", options: ["باڵا کورت بوو", "باڵا زۆر درێژ بوو", "باڵای ناوەنجی بوو، بەڵام زیاتر بەلای درێژییدا دەچوو", "باڵای دەگۆڕا"], answer: "باڵای ناوەنجی بوو، بەڵام زیاتر بەلای درێژییدا دەچوو" },
+            { question: "ڕەنگی ڕووخساری موبارەکی پێغەمبەر ﷺ چۆن بوو؟", options: ["زەردباو", "ئەسمەرێکی تۆخ", "سپییەکی تێکەڵ بە سووری، وەک گوڵ", "تەنها سپی"], answer: "سپییەکی تێکەڵ بە سووری، وەک گوڵ" },
+            { question: "شێوەی پرچی پێغەمبەر ﷺ چۆن بوو؟", options: ["زۆر لوول بوو", "تەواو خاو بوو", "نە زۆر لوول و نە زۆر خاو (مامناوەند)", "هەمیشە کورتی دەکردەوە"], answer: "نە زۆر لوول و نە زۆر خاو (مامناوەند)" },
+            { question: "ئەو هێڵە مووەی لەسەر سنگی پێغەمبەر ﷺ هەبوو، لە کوێوە بۆ کوێ درێژ دەبووەوە؟", options: ["لەسەرەوەی سنگ بۆ سەر دڵ", "لەسەرەوەی سنگ بۆ ناوک", "تەواوی سنگی داپۆشیبوو", "هەرگیز مووی لەسەر سنگ نەبوو"], answer: "لەسەرەوەی سنگ بۆ ناوک" },
+
+            // مۆری پێغەمبەرایەتی (وردەکاری زیاتر)
+            { question: "مۆری پێغەمبەرایەتی لە کام لای شانی پێغەمبەرەوە ﷺ نزیکتر بوو؟", options: ["شانی ڕاست", "ناوەڕاستی پشت", "شانی چەپ", "مل"], answer: "شانی چەپ" },
+            { question: "ڕەنگی مۆری پێغەمبەرایەتی چی بوو؟", options: ["ڕەش", "سوور", "وەک ڕەنگی پێستی لاشەی", "سەوزباو"], answer: "وەک ڕەنگی پێستی لاشەی" },
+            { question: "کام هاوەڵ لە منداڵیدا بەهۆی دوعای پێغەمبەر ﷺ، شیفای بۆ هات و تەمەنێکی درێژ و تەندروستی بەڕێکرد؟", options: ["جابری کوڕی سەمورە", "عەبدوڵای کوڕی عەباس", "سائیبی کوڕی یەزید", "حەسەنی کوڕی عەلی"], answer: "سائیبی کوڕی یەزید" },
+            { question: "پێغەمبەرانی تر مۆری پێغەمبەرایەتیان لە کوێ بوو؟", options: ["لەسەر شانی چەپ", "لەسەر دەستی ڕاست", "لەسەر دڵیان", "ئەوانیش لە نێوان شانیان بوو"], answer: "لەسەر دەستی ڕاست" },
+
+            // پۆشاک و خۆڕازاندنەوە
+            { question: "پێغەمبەر ﷺ بۆچی پارچە قوماشێکی بەکاردەهێنا و لەسەر پرچی دایدەنا؟", options: ["بۆ جوانی", "بۆ ئەوەی پۆشاکەکەی چەور نەبێت", "بۆ پاراستن لە خۆر", "سوننەت بوو"], answer: "بۆ ئەوەی پۆشاکەکەی چەور نەبێت" },
+            { question: "کام لەم سوورەتانە هۆکار بوو بۆ دەرکەوتنی تاڵە سپییەکانی پرچی پێغەمبەر ﷺ؟", options: ["البقرة و آل عمران", "الکهف و یس", "هود، الواقعة، المرسلات", "الملک و القلم"], answer: "هود، الواقعة، المرسلات" },
+            { question: "ئایا پێغەمبەر ﷺ پۆشاکی ڕەنگی سووری پۆشیوە؟", options: ["نەخێر، هەرگیز", "بەڵێ، سوورباو (خەتی سوور و سپی)", "تەنها سووری تۆخ", "تەنها لە جەنگدا"], answer: "بەڵێ، سوورباو (خەتی سوور و سپی)" },
+            { question: "نووسینی سەر ئەنگوستیلەکەی پێغەمبەر ﷺ چۆن هەڵکەندرابوو؟", options: ["محمد لە سەرەوە", "الله لە سەرەوە، پاشان رسول، پاشان محمد", "هەمووی لە یەک دێڕدا", "بە شێوەی بازنەیی"], answer: "الله لە سەرەوە، پاشان رسول، پاشان محمد" },
+
+            // ڕۆیشتن، دانیشتن، نووستن
+            { question: "کاتێک پێغەمبەر ﷺ دەڕۆیشت، هاوەڵان هەستیان بە چی دەکرد؟", options: ["کە زۆر هێواشە", "کە زەوی بۆ پێچ دەدرێتەوە (لەبەر خێرایی)", "کە زۆر ماندوو دەبێت", "کە زۆر ئاساییە"], answer: "کە زەوی بۆ پێچ دەدرێتەوە (لەبەر خێرایی)" },
+            { question: "پێغەمبەر ﷺ لە کاتی نووستندا دەستی ڕاستی لە کوێ دادەنا؟", options: ["لەسەر سنگی", "لەسەر دڵی", "لژێر ڕوومەتی ڕاستی", "لەسەر ڕانی"], answer: "لژێر ڕوومەتی ڕاستی" },
+            { question: "دوعای پێغەمبەر ﷺ پێش نووستن چی بوو؟", options: ["الحمدلله", "سبحان الله", "باسمك اللهم أموت وأحيا", "أستغفر الله"], answer: "باسمك اللهم أموت وأحيا" },
+
+            // خواردن و خواردنەوە
+            { question: "پێغەمبەر ﷺ نانی بە چەند پەنجە دەخوارد؟", options: ["یەک پەنجە", "دوو پەنجە", "سێ پەنجە", "پێنج پەنجە"], answer: "سێ پەنجە" },
+            { question: "کام لەم خواردنانەی حەز لێبوو؟", options: ["گۆشتی وشککراو", "شۆربا", "کولەکە و گۆشتی باسک", "برنج"], answer: "کولەکە و گۆشتی باسک" },
+            { question: "خۆشەویسترین خواردنەوە لای پێغەمبەر ﷺ چی بوو؟", options: ["شیر", "ئاوی گەرم", "شیرین و سارد", "ئاوی زەمزەم"], answer: "شیرین و سارد" },
+
+            // ڕەوشتە بەرزەکان
+            { question: "پێکەنینی پێغەمبەر ﷺ زۆربەی کات چۆن بوو؟", options: ["قاقای بەرز", "بێدەنگ", "تەنها زەردەخەنە", "پێکەنینی دەنگ نزم"], answer: "تەنها زەردەخەنە" },
+            { question: "کاتێک پیرەژنێک داوای بەهەشتی لێکرد، پێغەمبەر ﷺ بە گاڵتەوە چی پێ فەرموو؟", options: ["'بەهەشت بۆ تۆ نییە'", "'پیرەژن ناچێتە بەهەشت'", "'دوعات بۆ دەکەم'", "'خوا لێت خۆش بێت'"], answer: "'پیرەژن ناچێتە بەهەشت'" },
+            { question: "گریانی پێغەمبەر ﷺ بۆ وەفاتی ئیبراهیمی کوڕی، نیشانەی چی بوو؟", options: ["بێئارامی", "ناڕەزایی لە قەدەر", "سۆز و بەزەیی", "خەمۆکی"], answer: "سۆز و بەزەیی" },
+            { question: "جیاوازی نێوان ڕۆژووی ئێمە و ئەهلی کیتاب چییە؟", options: ["خواردنی پارشێو", "درێژی ماوەی ڕۆژوو", "جۆری خواردن", "کاتی بەربانگ"], answer: "خواردنی پارشێو" },
+
+            // نوێژ و عیبادەت
+            { question: "پێغەمبەر ﷺ فەرموویەتی: 'نووری چاو و ئاسوودەییم لە ... دایە'؟", options: ["ڕۆژوو", "خێرکردن", "نوێژ", "قورئان"], answer: "نوێژ" },
+            { question: "کاتێک پێغەمبەر ﷺ لە شەونوێژدا بە ئایەتی ڕەحمەت دەگەیشت، چی دەکرد؟", options: ["بە خێرایی دەیخوێند", "دەگریا", "داوای ڕەحمەتی لە خوا دەکرد", "سوژدەی دەبرد"], answer: "داوای ڕەحمەتی لە خوا دەکرد" },
+            { question: "کام دوعایە بوو کە پێغەمبەر ﷺ زۆرترین جار دەیخوێندەوە؟", options: ["یا مقلب القلوب...", "اللهم إنك عفو...", "ربنا آتنا في الدنیا حسنة...", "اللهم أعني على ذكرك..."], answer: "ربنا آتنا في الدنیا حسنة..." },
+
+            // هەڵسوکەوت و مامەڵە
+            { question: "پێغەمبەر ﷺ چۆن مامەڵەی لەگەڵ ئەو کەسەدا کرد کە لە مزگەوتدا میزیکرد؟", options: ["دەری کرد", "سزای دا", "فەرمووی وازی لێبێنن تا تەواو دەبێت، پاشان بە نەرمی فێری کرد", "ئیهمالی کرد"], answer: "فەرمووی وازی لێبێنن تا تەواو دەبێت، پاشان بە نەرمی فێری کرد" },
+            { question: "باشترین کردەوە لای خوا کامەیە؟", options: ["ئەو کردەوەیەی زۆرە", "ئەوەی بەردەوامە ئەگەر کەمیش بێت", "ئەوەی بە نهێنی دەکرێت", "ئەوەی لە ڕەمەزاندا دەکرێت"], answer: "ئەوەی بەردەوامە ئەگەر کەمیش بێت" },
+            { question: "ئامانجی سەرەکی لە جەنگەکانی پێغەمبەر ﷺ چی بوو؟", options: ["دەستکەوتنی سامان", "داگیرکاری", "بڵاوکردنەوەی پەیامی ئیسلام و بەرگری لە ستەملێکراوان", "تۆڵەسەندنەوە"], answer: "بڵاوکردنەوەی پەیامی ئیسلام و بەرگری لە ستەملێکراوان" },
+
+            // کۆتا ڕۆژەکان و وەفات
+            { question: "کۆتا نوێژ کە پێغەمبەر ﷺ بە جەماعەت کردی کامە بوو؟", options: ["نوێژی بەیانی ڕۆژی دووشەممە", "نوێژی هەینی", "نوێژی عیشا", "نوێژی مەغریب"], answer: "نوێژی هەینی" },
+            { question: "لە کاتی گیان کێشاندا، پێغەمبەر ﷺ چی دەکرد؟", options: ["داوای ئاوی دەکرد", "دەستی دەکردە ناو پەرداخێک ئاو و دەیهێنا بە ڕووخساریدا", "قورئانی دەخوێند", "بێدەنگ بوو"], answer: "دەستی دەکردە ناو پەرداخێک ئاو و دەیهێنا بە ڕووخساریدا" },
+            { question: "کام هاوەڵ بە خوێندنەوەی ئایەتی 'وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ...' خەڵکەکەی ئارام کردەوە؟", options: ["عومەری کوڕی خەتاب", "عەلی کوڕی ئەبی تاڵیب", "عوسمانی کوڕی عەففان", "ئەبوبەکری سدیق"], answer: "ئەبوبەکری سدیق" },
+            { question: "بینینی پێغەمبەر ﷺ لە خەودا بەڵگەیە لەسەر چی؟", options: ["خەونێکی ئاساییە", "تەمەنی درێژ دەبێت", "بینەر بەڕاستی بینیویەتی، چونکە شەیتان ناتوانێت خۆی بخاتە شێوەی ئەو", "نیشانەی مردنە"], answer: "بینەر بەڕاستی بینیویەتی، چونکە شەیتان ناتوانێت خۆی بخاتە شێوەی ئەو" },
+            // ... لێرە دەتوانیت 100+ پرسیاری تر زیاد بکەیت بە هەمان شێوە
+            // شێوەی دەرەوەی پێغەمبەر ﷺ (وردەکاری زیاتر)
+            { question: "کام لەم وەسفانە بۆ شێوەی جەستەی پێغەمبەر ﷺ ڕاستە؟", options: ["زۆر قەڵەو بوو", "زۆر لاواز بوو", "جەستەی پڕ بوو، نە قەڵەو و نە لاواز", "سکێکی گەورەی هەبوو"], answer: "جەستەی پڕ بوو، نە قەڵەو و نە لاواز" },
+            { question: "ئەنەسی کوڕی مالیک بۆنی پێغەمبەری ﷺ بە چی چواندووە؟", options: ["میسک و عەنبەر", "لە میسک و عەنبەریش خۆشتر", "بۆنی گوڵی یاسەمین", "بۆنی باران"], answer: "لە میسک و عەنبەریش خۆشتر" },
+            { question: "پێغەمبەر ﷺ لە ڕووی باڵاوە چۆن بوو؟", options: ["باڵا کورت بوو", "باڵا زۆر درێژ بوو", "باڵای ناوەنجی بوو، بەڵام زیاتر بەلای درێژییدا دەچوو", "باڵای دەگۆڕا"], answer: "باڵای ناوەنجی بوو، بەڵام زیاتر بەلای درێژییدا دەچوو" },
+            { question: "ڕەنگی ڕووخساری موبارەکی پێغەمبەر ﷺ چۆن بوو؟", options: ["زەردباو", "ئەسمەرێکی تۆخ", "سپییەکی تێکەڵ بە سووری، وەک گوڵ", "تەنها سپی"], answer: "سپییەکی تێکەڵ بە سووری، وەک گوڵ" },
+            { question: "شێوەی پرچی پێغەمبەر ﷺ چۆن بوو؟", options: ["زۆر لوول بوو", "تەواو خاو بوو", "نە زۆر لوول و نە زۆر خاو (مامناوەند)", "هەمیشە کورتی دەکردەوە"], answer: "نە زۆر لوول و نە زۆر خاو (مامناوەند)" },
+            { question: "ئەو هێڵە مووەی لەسەر سنگی پێغەمبەر ﷺ هەبوو، لە کوێوە بۆ کوێ درێژ دەبووەوە؟", options: ["لەسەرەوەی سنگ بۆ سەر دڵ", "لەسەرەوەی سنگ بۆ ناوک", "تەواوی سنگی داپۆشیبوو", "هەرگیز مووی لەسەر سنگ نەبوو"], answer: "لەسەرەوەی سنگ بۆ ناوک" },
+
+            // مۆری پێغەمبەرایەتی (وردەکاری زیاتر)
+            { question: "مۆری پێغەمبەرایەتی لە کام لای شانی پێغەمبەرەوە ﷺ نزیکتر بوو؟", options: ["شانی ڕاست", "ناوەڕاستی پشت", "شانی چەپ", "مل"], answer: "شانی چەپ" },
+            { question: "ڕەنگی مۆری پێغەمبەرایەتی چی بوو؟", options: ["ڕەش", "سوور", "وەک ڕەنگی پێستی لاشەی", "سەوزباو"], answer: "وەک ڕەنگی پێستی لاشەی" },
+            { question: "کام هاوەڵ لە منداڵیدا بەهۆی دوعای پێغەمبەر ﷺ، شیفای بۆ هات و تەمەنێکی درێژ و تەندروستی بەڕێکرد؟", options: ["جابری کوڕی سەمورە", "عەبدوڵای کوڕی عەباس", "سائیبی کوڕی یەزید", "حەسەنی کوڕی عەلی"], answer: "سائیبی کوڕی یەزید" },
+            { question: "پێغەمبەرانی تر مۆری پێغەمبەرایەتیان لە کوێ بوو؟", options: ["لەسەر شانی چەپ", "لەسەر دەستی ڕاست", "لەسەر دڵیان", "ئەوانیش لە نێوان شانیان بوو"], answer: "لەسەر دەستی ڕاست" },
+
+            // پۆشاک و خۆڕازاندنەوە
+            { question: "پێغەمبەر ﷺ بۆچی پارچە قوماشێکی بەکاردەهێنا و لەسەر پرچی دایدەنا؟", options: ["بۆ جوانی", "بۆ ئەوەی پۆشاکەکەی چەور نەبێت", "بۆ پاراستن لە خۆر", "سوننەت بوو"], answer: "بۆ ئەوەی پۆشاکەکەی چەور نەبێت" },
+            { question: "کام لەم سوورەتانە هۆکار بوو بۆ دەرکەوتنی تاڵە سپییەکانی پرچی پێغەمبەر ﷺ؟", options: ["البقرة و آل عمران", "الکهف و یس", "هود، الواقعة، المرسلات", "الملک و القلم"], answer: "هود، الواقعة، المرسلات" },
+            { question: "ئایا پێغەمبەر ﷺ پۆشاکی ڕەنگی سووری پۆشیوە؟", options: ["نەخێر، هەرگیز", "بەڵێ، سوورباو (خەتی سوور و سپی)", "تەنها سووری تۆخ", "تەنها لە جەنگدا"], answer: "بەڵێ، سوورباو (خەتی سوور و سپی)" },
+            { question: "نووسینی سەر ئەنگوستیلەکەی پێغەمبەر ﷺ چۆن هەڵکەندرابوو؟", options: ["محمد لە سەرەوە", "الله لە سەرەوە، پاشان رسول، پاشان محمد", "هەمووی لە یەک دێڕدا", "بە شێوەی بازنەیی"], answer: "الله لە سەرەوە، پاشان رسول، پاشان محمد" },
+
+            // ڕۆیشتن، دانیشتن، نووستن
+            { question: "کاتێک پێغەمبەر ﷺ دەڕۆیشت، هاوەڵان هەستیان بە چی دەکرد؟", options: ["کە زۆر هێواشە", "کە زەوی بۆ پێچ دەدرێتەوە (لەبەر خێرایی)", "کە زۆر ماندوو دەبێت", "کە زۆر ئاساییە"], answer: "کە زەوی بۆ پێچ دەدرێتەوە (لەبەر خێرایی)" },
+            { question: "پێغەمبەر ﷺ لە کاتی نووستندا دەستی ڕاستی لە کوێ دادەنا؟", options: ["لەسەر سنگی", "لەسەر دڵی", "لژێر ڕوومەتی ڕاستی", "لەسەر ڕانی"], answer: "لژێر ڕوومەتی ڕاستی" },
+            { question: "دوعای پێغەمبەر ﷺ پێش نووستن چی بوو؟", options: ["الحمدلله", "سبحان الله", "باسمك اللهم أموت وأحيا", "أستغفر الله"], answer: "باسمك اللهم أموت وأحيا" },
+
+            // خواردن و خواردنەوە
+            { question: "پێغەمبەر ﷺ نانی بە چەند پەنجە دەخوارد؟", options: ["یەک پەنجە", "دوو پەنجە", "سێ پەنجە", "پێنج پەنجە"], answer: "سێ پەنجە" },
+            { question: "کام لەم خواردنانەی حەز لێبوو؟", options: ["گۆشتی وشککراو", "شۆربا", "کولەکە و گۆشتی باسک", "برنج"], answer: "کولەکە و گۆشتی باسک" },
+            { question: "خۆشەویسترین خواردنەوە لای پێغەمبەر ﷺ چی بوو؟", options: ["شیر", "ئاوی گەرم", "شیرین و سارد", "ئاوی زەمزەم"], answer: "شیرین و سارد" },
+
+            // ڕەوشتە بەرزەکان
+            { question: "پێکەنینی پێغەمبەر ﷺ زۆربەی کات چۆن بوو؟", options: ["قاقای بەرز", "بێدەنگ", "تەنها زەردەخەنە", "پێکەنینی دەنگ نزم"], answer: "تەنها زەردەخەنە" },
+            { question: "کاتێک پیرەژنێک داوای بەهەشتی لێکرد، پێغەمبەر ﷺ بە گاڵتەوە چی پێ فەرموو؟", options: ["'بەهەشت بۆ تۆ نییە'", "'پیرەژن ناچێتە بەهەشت'", "'دوعات بۆ دەکەم'", "'خوا لێت خۆش بێت'"], answer: "'پیرەژن ناچێتە بەهەشت'" },
+            { question: "گریانی پێغەمبەر ﷺ بۆ وەفاتی ئیبrahیمی کوڕی، نیشانەی چی بوو؟", options: ["بێئارامی", "ناڕەزایی لە قەدەر", "سۆز و بەزەیی", "خەمۆکی"], answer: "سۆز و بەزەیی" },
+            { question: "جیاوازی نێوان ڕۆژووی ئێمە و ئەهلی کیتاب چییە؟", options: ["خواردنی پارشێو", "درێژی ماوەی ڕۆژوو", "جۆری خواردن", "کاتی بەربانگ"], answer: "خواردنی پارشێو" },
+
+            // نوێژ و عیبادەت
+            { question: "پێغەمبەر ﷺ فەرموویەتی: 'نووری چاو و ئاسوودەییم لە ... دایە'؟", options: ["ڕۆژوو", "خێرکردن", "نوێژ", "قورئان"], answer: "نوێژ" },
+            { question: "کاتێک پێغەمبەر ﷺ لە شەونوێژدا بە ئایەتی ڕەحمەت دەگەیشت، چی دەکرد؟", options: ["بە خێرایی دەیخوێند", "دەگریا", "داوای ڕەحمەتی لە خوا دەکرد", "سوژدەی دەبرد"], answer: "داوای ڕەحمەتی لە خوا دەکرد" },
+            { question: "کام دوعایە بوو کە پێغەمبەر ﷺ زۆرترین جار دەیخوێندەوە؟", options: ["یا مقلب القلوب...", "اللهم إنك عفو...", "ربنا آتنا في الدنیا حسنة...", "اللهم أعني على ذكرك..."], answer: "ربنا آتنا في الدنیا حسنة..." },
+
+            // هەڵسوکەوت و مامەڵە
+            { question: "پێغەمبەر ﷺ چۆن مامەڵەی لەگەڵ ئەو کەسەدا کرد کە لە مزگەوتدا میزیکرد؟", options: ["دەری کرد", "سزای دا", "فەرمووی وازی لێبێنن تا تەواو دەبێت، پاشان بە نەرمی فێری کرد", "ئیهمالی کرد"], answer: "فەرمووی وازی لێبێنن تا تەواو دەبێت، پاشان بە نەرمی فێری کرد" },
+            { question: "باشترین کردەوە لای خوا کامەیە؟", options: ["ئەو کردەوەیەی زۆرە", "ئەوەی بەردەوامە ئەگەر کەمیش بێت", "ئەوەی بە نهێنی دەکرێت", "ئەوەی لە ڕەمەزاندا دەکرێت"], answer: "ئەوەی بەردەوامە ئەگەر کەمیش بێت" },
+            { question: "ئامانجی سەرەکی لە جەنگەکانی پێغەمبەر ﷺ چی بوو؟", options: ["دەستکەوتنی سامان", "داگیرکاری", "بڵاوکردنەوەی پەیامی ئیسلام و بەرگری لە ستەملێکراوان", "تۆڵەسەندنەوە"], answer: "بڵاوکردنەوەی پەیامی ئیسلام و بەرگری لە ستەملێکراوان" },
+
+            // کۆتا ڕۆژەکان و وەفات
+            { question: "کۆتا نوێژ کە پێغەمبەر ﷺ بە جەماعەت کردی کامە بوو؟", options: ["نوێژی بەیانی ڕۆژی دووشەممە", "نوێژی هەینی", "نوێژی عیشا", "نوێژی مەغریب"], answer: "نوێژی هەینی" },
+            { question: "لە کاتی گیان کێشاندا، پێغەمبەر ﷺ چی دەکرد؟", options: ["داوای ئاوی دەکرد", "دەستی دەکردە ناو پەرداخێک ئاو و دەیهێنا بە ڕووخساریدا", "قورئانی دەخوێند", "بێدەنگ بوو"], answer: "دەستی دەکردە ناو پەرداخێک ئاو و دەیهێنا بە ڕووخساریدا" },
+            { question: "کام هاوەڵ بە خوێندنەوەی ئایەتی 'وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ...' خەڵکەکەی ئارام کردەوە؟", options: ["عومەری کوڕی خەتاب", "عەلی کوڕی ئەبی تاڵیب", "عوسمانی کوڕی عەففان", "ئەبوبەکری سدیق"], answer: "ئەبوبەکری سدیق" },
+            { question: "بینینی پێغەمبەر ﷺ لە خەودا بەڵگەیە لەسەر چی؟", options: ["خەونێکی ئاساییە", "تەمەنی درێژ دەبێت", "بینەر بەڕاستی بینیویەتی, چونکە شەیتان ناتوانێت خۆی بخاتە شێوەی ئەو", "نیشانەی مردنە"], answer: "بینەر بەڕاستی بینیویەتی, چونکە شەیتان ناتوانێت خۆی بخاتە شێوەی ئەو" }
+        ];
+
+        // Variables
+        let currentQuiz = 0;
+        let score = 0;
+        let timer;
+        const TIME_LIMIT = 30;
+        let quizStartTime;
+        let shuffledQuestions = [];
+        let userAnswers = [];
+        const CIRCLE_LENGTH = 2 * Math.PI * 28;
+
+        // Elements
+        const quizContainer = document.getElementById('quiz');
+        const resultContainer = document.getElementById('result');
+        const questionEl = document.getElementById('question');
+        const optionsEl = document.getElementById('options');
+        const finishBtn = document.getElementById('finish-btn');
+        const progressText = document.getElementById('progress-text');
+        const progressBarFull = document.getElementById('progress-bar-full');
+        const timerCircle = document.querySelector('.timer-progress-circle');
+        const timerText = document.querySelector('#timer-text');
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const correctSound = document.getElementById('correct-sound');
+        const incorrectSound = document.getElementById('incorrect-sound');
+
+        // Background Stars Animation
+        function createStars() {
+            const starsContainer = document.getElementById('background-stars');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = `${Math.random() * 3 + 1}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Theme Toggle
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            themeIcon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        });
+
+        // Shuffle Array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Start Quiz
+        function startQuiz() {
+            quizStartTime = new Date();
+            currentQuiz = 0;
+            score = 0;
+            userAnswers = [];
+            shuffledQuestions = [...quizData];
+            shuffleArray(shuffledQuestions);
+
+            document.getElementById('start-container').style.display = 'none';
+            resultContainer.style.display = 'none';
+            quizContainer.style.display = 'block';
+
+            loadQuestion();
+        }
+
+        // Load Question
+        function loadQuestion() {
+            const currentQuizData = shuffledQuestions[currentQuiz];
+
+            questionEl.innerText = currentQuizData.question;
+            optionsEl.innerHTML = '';
+
+            currentQuizData.options.forEach(option => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.classList.add('option-btn');
+                button.addEventListener('click', () => selectAnswer(button, currentQuizData));
+                optionsEl.appendChild(button);
+            });
+
+            updateProgress();
+            startTimer();
+        }
+
+        // Start Timer
+        function startTimer() {
+            let timeLeft = TIME_LIMIT;
+            clearInterval(timer);
+            timerCircle.style.transition = 'stroke-dashoffset 1s linear, stroke 0.5s';
+            timerCircle.style.stroke = 'var(--primary-color)';
+            timerCircle.style.strokeDashoffset = CIRCLE_LENGTH;
+
+            setTimeout(() => { timerCircle.style.strokeDashoffset = 0; }, 100);
+
+            timer = setInterval(() => {
+                timeLeft--;
+                const offset = ((TIME_LIMIT - timeLeft) / TIME_LIMIT) * CIRCLE_LENGTH;
+                timerCircle.style.strokeDashoffset = offset;
+                timerText.innerText = timeLeft;
+
+                if (timeLeft <= 5) {
+                    timerCircle.style.stroke = 'var(--incorrect-border)';
+                }
+                if (timeLeft < 0) {
+                    clearInterval(timer);
+                    handleTimeUp();
+                }
+            }, 1000);
+
+            timerText.innerText = TIME_LIMIT;
+        }
+
+        // Handle Time Up
+        function handleTimeUp() {
+            const currentQuizData = shuffledQuestions[currentQuiz];
+            userAnswers.push({
+                question: currentQuizData.question,
+                userAnswer: "کات تەواو بوو",
+                correctAnswer: currentQuizData.answer,
+                isCorrect: false
+            });
+
+            const buttons = optionsEl.querySelectorAll('.option-btn');
+            buttons.forEach(button => {
+                if (button.innerText === currentQuizData.answer) button.classList.add('correct');
+                button.disabled = true;
+            });
+            incorrectSound.play();
+            setTimeout(goToNextQuestion, 2000);
+        }
+
+        // Select Answer
+        function selectAnswer(selectedBtn, currentQuizData) {
+            clearInterval(timer);
+            timerCircle.style.transition = 'none';
+            const userAnswer = selectedBtn.innerText;
+            const isCorrect = userAnswer === currentQuizData.answer;
+
+            userAnswers.push({
+                question: currentQuizData.question,
+                userAnswer,
+                correctAnswer: currentQuizData.answer,
+                isCorrect
+            });
+
+            if (isCorrect) {
+                score++;
+                selectedBtn.classList.add('correct');
+                correctSound.play();
+            } else {
+                selectedBtn.classList.add('selected-wrong');
+                incorrectSound.play();
+            }
+
+            const buttons = optionsEl.querySelectorAll('.option-btn');
+            buttons.forEach(button => {
+                if (button.innerText === currentQuizData.answer) button.classList.add('correct');
+                button.disabled = true;
+            });
+
+            setTimeout(goToNextQuestion, 2000);
+        }
+
+        // Go to Next Question
+        function goToNextQuestion() {
+            currentQuiz++;
+            if (currentQuiz < shuffledQuestions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Update Progress
+        function updateProgress() {
+            const questionNumber = currentQuiz + 1;
+            const totalQuestions = shuffledQuestions.length;
+            progressText.innerText = `پرسیاری ${questionNumber} / ${totalQuestions}`;
+            progressBarFull.style.width = `${(questionNumber / totalQuestions) * 100}%`;
+        }
+
+        // Show Results
+        function showResults() {
+            clearInterval(timer);
+            quizContainer.style.display = 'none';
+
+            const quizEndTime = new Date();
+            const timeTaken = Math.round((quizEndTime - quizStartTime) / 1000);
+            const minutes = Math.floor(timeTaken / 60);
+            const seconds = timeTaken % 60;
+            const totalQuestions = shuffledQuestions.length;
+            const percentage = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
+
+            let message, icon;
+            if (percentage >= 90) {
+                message = 'بێوێنەیە! زانیاریەکی زۆر قووڵت هەیە. خوای گەورە لێت ڕازی بێت.';
+                icon = '🏆';
+            } else if (percentage >= 70) {
+                message = 'زۆر باشە! سەرکەوتنێکی گەورەیە. بەردەوام بە لەسەر ئەم ڕێگایە.';
+                icon = '🌟';
+            } else if (percentage >= 50) {
+                message = 'باشە، بەڵام دەتوانیت باشتر بیت. دووبارە هەوڵبدەرەوە.';
+                icon = '📚';
+            } else {
+                message = 'پێویستە زیاتر هەوڵبدەیت. دووبارە کتێبەکە بخوێنەرەوە و بەردەوام بە.';
+                icon = '💪';
+            }
+
+            resultContainer.innerHTML = `
+                <div class="result-summary">
+                    <div class="score-circle" style="--score-percent: ${percentage}">
+                        <span>${percentage}%</span>
+                    </div>
+                    <h2>کۆتایی گەشتەکە</h2>
+                    <p class="result-message">${icon} ${message}</p>
+                    <p>وەڵامی <strong>${score}</strong> لە <strong>${totalQuestions}</strong> پرسیارت بە دروستی داوەتەوە.</p>
+                    <p>کاتی بەکارهاتوو: <strong>${minutes} خولەک و ${seconds} چرکە</strong></p>
+                    <button class="restart-btn" onclick="location.reload()">دەستپێکردنەوەی گەشت</button>
+                </div>
+                <div id="review-container">
+                    <h3>پێداچوونەوەی وەڵامەکان</h3>
+                    ${generateReview()}
+                </div>
+            `;
+            resultContainer.style.display = 'block';
+        }
+
+        // Generate Review
+        function generateReview() {
+            let reviewHtml = '<div class="review-list">';
+            userAnswers.forEach((answer, index) => {
+                const resultClass = answer.isCorrect ? 'correct' : 'incorrect';
+                reviewHtml += `
+                    <div class="review-item">
+                        <p><strong>پرسیاری ${index + 1}:</strong> ${answer.question}</p>
+                        <p class="user-answer ${resultClass}">
+                            <strong>وەڵامی تۆ:</strong> ${answer.userAnswer}
+                        </p>
+                        ${!answer.isCorrect ? `
+                            <p class="correct-answer-display">
+                                <strong>وەڵامی ڕاست:</strong> ${answer.correctAnswer}
+                            </p>
+                        ` : ''}
+                    </div>
+                `;
+            });
+            reviewHtml += '</div>';
+            return reviewHtml;
+        }
+
+        // Event Listeners
+        document.getElementById('start-btn').addEventListener('click', startQuiz);
+        finishBtn.addEventListener('click', showResults);
+
+        // Initialize
+        createStars();
+    </script>
+</body>
+
+</html>
